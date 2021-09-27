@@ -1,23 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 /* This is used to track each game. Default time is 2 minutes. */
 
 public class Timer : MonoBehaviour
 {
-    public int minutes;
-    public int seconds;
-    public float milliseconds;   //counts down from 99. Not actually milliseconds
+    public float time;           //time in seconds. Will use this value to get the minutes, seconds and milliseconds
     public bool timerRunning;
+
+    //UI
+    public TextMeshProUGUI timerUI;
 
     // Start is called before the first frame update
     void Start()
     {
-        minutes = 2;
-        seconds = 0;
-        milliseconds = 0;
         timerRunning = false;
+        time = 120;             //default time is 2 minutes.
     }
 
     // Update is called once per frame
@@ -26,49 +26,35 @@ public class Timer : MonoBehaviour
         //timer is displayed as a string so that extra zeroes can be added when necessary to display correct time
         if (timerRunning)
         {
-            //millisecond countdown
-            milliseconds -= 1 * Time.deltaTime;           
-            if (milliseconds < 0)
-            {
-                milliseconds = 99;
-                seconds--;
-            }
+            time -= Time.deltaTime;
 
-            //second countdown
-            if (seconds < 0)
+            if (time < 0)
             {
-                seconds = 59;
-                minutes--;
-            }
-
-            //minute countdown
-            if (minutes < 0)
-            {
-                //stop timer
+                time = 0;
                 timerRunning = false;
-                minutes = 0;
-                seconds = 0;
-                milliseconds = 0;
             }
-
+          
         }
+
+        //update timer display
+        timerUI.text = DisplayTimer();
     }
 
-    public void SetTimer(int minutes, int seconds)
+    public void SetTimer(float seconds)
     {
-        //timer will not exceed five minutes, and seconds cannot exceed 60      
-        this.minutes = (minutes > 5) ? 5 : minutes;
-        this.seconds = (seconds > 59) ? 59 : seconds;
+        //timer will not exceed five minutes
+        time = (seconds > 300) ? 300 : seconds;
     }
 
     public string DisplayTimer()
     {
-        string seconds, milliseconds;
-        //append zeroes when necessary
-        seconds = (this.seconds < 10) ? "0" + this.seconds : this.seconds.ToString();
-        milliseconds = (this.seconds < 10) ? "0" + this.milliseconds : this.milliseconds.ToString();
+        float minutes = Mathf.FloorToInt(time / 60);
+        float seconds = Mathf.FloorToInt(time % 60);
+        float milliseconds = time % 1 * 100;    //I removed a zero so that only the first two values are displayed.
 
-        return minutes + ":" + seconds + ":" + milliseconds;
+        string timeText = string.Format("{0:0}:{1:00}:{2:00}", minutes, seconds, milliseconds);
+
+        return timeText;
     }
 
 }
