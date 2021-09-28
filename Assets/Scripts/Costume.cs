@@ -6,8 +6,7 @@ using UnityEngine;
 
 public class Costume : MonoBehaviour
 {
-    public string name;
-    public Sprite playerSprite;
+    public new string name;
     public short candyAmount = 0;
     public float cooldown;          //time in seconds before trick is recharged
     public short dropAmount = 5;    //how much candy the player drops when hit. 5 is the default.

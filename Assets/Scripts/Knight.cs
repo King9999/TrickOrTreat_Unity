@@ -10,13 +10,11 @@ public class Knight : Costume
     void Start()
     {
         name = "Knight";
-        candyAmount = 0;
-        cooldown = 2;
+        cooldown = 1;
         dropAmount = 2;
         candyTaken = 1;
         moveSpeed = 0.6f;
         actionTimer = 1;
-        isTrickActive = false;
     }
 
     // Update is called once per frame

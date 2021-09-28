@@ -50,11 +50,16 @@ public class Timer : MonoBehaviour
     {
         float minutes = Mathf.FloorToInt(time / 60);
         float seconds = Mathf.FloorToInt(time % 60);
-        float milliseconds = time % 1 * 100;    //I removed a zero so that only the first two values are displayed.
+        float milliseconds = time % 1 * 100;    //I removed a zero so that only the first two values are displayed. Format won't remove the extra digit
 
         string timeText = string.Format("{0:0}:{1:00}:{2:00}", minutes, seconds, milliseconds);
 
         return timeText;
+    }
+
+    public bool TimeUp()
+    {
+        return time <= 0;
     }
 
 }
