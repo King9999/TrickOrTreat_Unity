@@ -13,7 +13,7 @@ public class Princess : Costume
         cooldown = 1;
         dropAmount = 5;
         candyTaken = 2;
-        moveSpeed = 1.1f;
+        moveSpeed = 1.5f;
         actionTimer = 1;
     }
 

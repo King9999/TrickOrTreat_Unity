@@ -13,7 +13,7 @@ public class Knight : Costume
         cooldown = 1;
         dropAmount = 2;
         candyTaken = 1;
-        moveSpeed = 0.6f;
+        moveSpeed = 1f;
         actionTimer = 1;
     }
 
