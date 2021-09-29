@@ -7,10 +7,10 @@ using UnityEngine;
 public class Costume : MonoBehaviour
 {
     public new string name;
-    public short candyAmount = 0;
+    public int candyAmount = 0;
     public float cooldown;          //time in seconds before trick is recharged
-    public short dropAmount = 5;    //how much candy the player drops when hit. 5 is the default.
-    public short candyTaken = 1;        //how much candy the player gets from a house per tick
+    public int dropAmount = 5;    //how much candy the player drops when hit. 5 is the default.
+    public int candyTaken = 1;        //how much candy the player gets from a house per tick
     public float vx, vy = 0;
     public float moveSpeed = 1;     //scales vx and vy. Lower value = slower speed
     public float actionTimer;       //how long a trick is active for.
@@ -18,12 +18,14 @@ public class Costume : MonoBehaviour
     public float currentTime = 0;   //used to track when trick can be used again.
 
     //consts
-    public const short MAX_CANDY = 999;
-    public const short INIT_DROP_AMOUNT = 5;
+    //public const short MAX_CANDY = 999;
+    public int MaxCandy { get; } = 999;
+    //public const short INIT_DROP_AMOUNT = 5;
+    public int InitDropAmount { get; } = 5;
 
     public void AddCandy(short amount)
     {
-        if (candyAmount + amount <= MAX_CANDY)
+        if (candyAmount + amount <= MaxCandy)
             candyAmount += amount;
     }
 
