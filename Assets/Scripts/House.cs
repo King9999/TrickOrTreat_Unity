@@ -7,7 +7,7 @@ using UnityEngine;
 public class House : MonoBehaviour
 {
     public int candyAmount;         //random amount from 1 to 10, with a small chance to be 20.
-    public float restockTime;       //time that must pass before house has candy
+    public float restockTime;       //time in seconds that must pass before house has candy
     public float currentTime;
 
     public Sprite houseLightsOff;
@@ -37,6 +37,33 @@ public class House : MonoBehaviour
     public bool HasCandy()
     {
         return candyAmount > 0;
+    }
+
+    private void Start()
+    {
+        restockTime = 2;
+        currentTime = 0;
+    }
+    private void Update()
+    {
+        if (!HasCandy() && Time.time > currentTime + restockTime)
+        {
+            StockUp();
+            currentTime = Time.time;
+        }
+
+        //TODO: Figure out how to disable the box collider in the child component without disabling the parent.
+        //GetComponentInChildren<BoxCollider2D>().enabled = false;
+        
+
+        /*if (HasCandy())
+        {
+            GetComponentInChildren<BoxCollider2D>().enabled = true;
+        }
+        else
+        {
+            GetComponentInChildren<BoxCollider2D>().enabled = false;
+        }*/
     }
 
 

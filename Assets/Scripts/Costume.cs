@@ -21,6 +21,7 @@ public class Costume : MonoBehaviour
     //consts  
     public int MaxCandy { get; } = 999;
     public int InitDropAmount { get; } = 5;
+    float PlayerZValue { get; } = -1;       //used so that the player always remains visible on screen.
 
     public void AddCandy(short amount)
     {
@@ -106,11 +107,11 @@ public class Costume : MonoBehaviour
 
     public virtual void UseTrick(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed && Time.time > currentTime + cooldown)
+        /*if (context.phase == InputActionPhase.Performed && Time.time > currentTime + cooldown)
         {           
             isTrickActive = true;
             currentTime = Time.time;
-        }
+        }*/
         //else
             //play a sound or show a graphic to indicate trick can't be used yet.
     }
@@ -120,7 +121,16 @@ public class Costume : MonoBehaviour
     {
         //update player movement
         transform.position = new Vector3(transform.position.x + (vx * Time.deltaTime),
-            transform.position.y + (vy * Time.deltaTime), 0);
+            transform.position.y + (vy * Time.deltaTime), PlayerZValue);
+    }
+
+    //check for collision with candy triggers
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if(collision.CompareTag("Trigger"))
+        {
+            Debug.Log("Collecting Candy");
+        }
     }
 
 }

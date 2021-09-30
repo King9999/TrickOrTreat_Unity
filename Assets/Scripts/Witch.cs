@@ -13,6 +13,7 @@ public class Witch : Costume
         candyAmount = 0;
         cooldown = 8;
         dropAmount = 5;
+        moveSpeed = 1.3f;
         actionTimer = 1;        //lasts until beam disappears
     }
 
