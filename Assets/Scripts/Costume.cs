@@ -9,7 +9,8 @@ public class Costume : MonoBehaviour
 {
     public new string name;
     public int candyAmount = 0;
-    public float cooldown;                  //time in seconds before trick is recharged
+    public float cooldown = 0;              //time in seconds before trick is recharged. Starts at zero so that trick can be used immediately at game start
+    public float initCooldown;              //cooldown of each trick.
     public int dropAmount = 5;              //how much candy the player drops when hit. 5 is the default.
     public int candyTaken = 1;              //how much candy the player gets from a house per tick
     public float vx, vy = 0;
@@ -18,10 +19,21 @@ public class Costume : MonoBehaviour
     public bool isTrickActive = false;
     public float currentTime = 0;           //used to track when trick can be used again.
 
+    //player orientation. Used to determine where to generate an action
+    protected enum Direction
+    {
+        Left,
+        Right,
+        Up,
+        Down
+    }
+
+    protected Direction direction = Direction.Down;      //default position when game starts
+
     //consts  
-    public int MaxCandy { get; } = 999;
-    public int InitDropAmount { get; } = 5;
-    float PlayerZValue { get; } = -1;       //used so that the player always remains visible on screen.
+    int MaxCandy { get; } = 999;
+    int InitDropAmount { get; } = 5;
+    protected float PlayerZValue { get; } = -1;       //used so that the player always remains visible on screen.
 
     public void AddCandy(short amount)
     {
@@ -59,6 +71,7 @@ public class Costume : MonoBehaviour
         {
             //move player up
             vy = moveSpeed;
+            direction = Direction.Up;
         }
         else
         {
@@ -72,6 +85,7 @@ public class Costume : MonoBehaviour
         {
             //move player down
             vy = -moveSpeed;
+            direction = Direction.Down;
         }
         else
         {
@@ -85,6 +99,7 @@ public class Costume : MonoBehaviour
         {
             //move player left
             vx = -moveSpeed;
+            direction = Direction.Left;
         }
         else
         {
@@ -98,6 +113,7 @@ public class Costume : MonoBehaviour
         {
             //move player right
             vx = moveSpeed;
+            direction = Direction.Right;
         }
         else
         {

@@ -9,12 +9,13 @@ public class Ghost : Costume
 {
     public GameObject booPrefab;
     GameObject boo;
-    float InitCooldown { get; } = 10;
+    //float InitCooldown { get; } = 10;
     // Start is called before the first frame update
     void Start()
     {
         name = "Ghost";
-        cooldown = 0;
+        //cooldown = 0;
+        initCooldown = 10;
         actionTimer = 0.5f;
         moveSpeed = 1.3f;
     }
@@ -48,7 +49,7 @@ public class Ghost : Costume
             if (!isTrickActive && Time.time > currentTime + cooldown)
             {
                 isTrickActive = true;
-                cooldown = InitCooldown;
+                cooldown = initCooldown;
                 currentTime = Time.time;
 
                 //temporarily disable hitbox so they aren't hit by their own attack.
