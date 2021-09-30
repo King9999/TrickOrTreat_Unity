@@ -22,5 +22,18 @@ public class Knight : Costume
     {
 
     }
+
+    /*private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Trigger"))
+        {
+            Debug.Log("Collecting Candy");
+        }
+
+        if (collision.CompareTag("Trick"))
+        {
+            Debug.Log("Player hit");
+        }
+    }*/
 }
 

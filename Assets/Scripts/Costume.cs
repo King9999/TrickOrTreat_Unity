@@ -131,6 +131,11 @@ public class Costume : MonoBehaviour
         {
             Debug.Log("Collecting Candy");
         }
+
+        if (collision.CompareTag("Trick"))
+        {
+            Debug.Log(name + " hit");
+        }
     }
 
 }
