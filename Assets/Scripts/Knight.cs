@@ -8,7 +8,7 @@ public class Knight : Costume
 {
     public GameObject swordPrefab;
     GameObject sword;
-    float swordOffset = 0.5f;                   //used to position the sword away from player.
+    float swordOffset = 0.4f;                   //used to position the sword away from player.
 
     // Start is called before the first frame update
     void Start()

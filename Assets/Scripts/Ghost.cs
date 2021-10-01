@@ -55,7 +55,7 @@ public class Ghost : Costume
                 //temporarily disable hitbox so they aren't hit by their own attack.
                 GetComponent<BoxCollider2D>().enabled = false;
 
-                boo = Instantiate(booPrefab, transform.position, Quaternion.identity);
+                boo = Instantiate(booPrefab, new Vector3(transform.position.x, transform.position.y, PlayerZValue - 1), Quaternion.identity);
             }
             //else
             //play a sound or show a graphic to indicate trick can't be used yet.
