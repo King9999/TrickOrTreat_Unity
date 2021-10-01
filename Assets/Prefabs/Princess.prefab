@@ -127,6 +127,7 @@ MonoBehaviour:
   name: 
   candyAmount: 0
   cooldown: 0
+  initCooldown: 0
   dropAmount: 5
   candyTaken: 1
   vx: 0
@@ -135,6 +136,7 @@ MonoBehaviour:
   actionTimer: 0
   isTrickActive: 0
   currentTime: 0
+  questionMarkPrefab: {fileID: 5384806185599817607, guid: 70d6602c9caa1054096bf4203b32cd7a, type: 3}
 --- !u!50 &1561884365703912084
 Rigidbody2D:
   serializedVersion: 4
