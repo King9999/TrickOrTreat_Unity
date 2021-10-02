@@ -9,9 +9,23 @@ public class Witch : Costume
 {
     public GameObject magicPrefab;
     GameObject magic;
+    Magic magicState;
     public float magicOffset = 0.4f;
     public float magicVx, magicVy = 0;             //used to move the magic shot
     public float magicSpeed;
+
+    public static Witch instance;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);    //Only want one instance of game manager
+            return;
+        }
+
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -30,9 +44,9 @@ public class Witch : Costume
     {
         //the magic lasts until it hits a house or goes off screen. So there's no action timer check.
         //However, cooldown does not take effect until magic disappears.
-        if (isTrickActive)
+        /*if (magicState.isActive && isTrickActive)
         {
-            magic.transform.position = new Vector3(magic.transform.position.x + magicVx * Time.deltaTime, magic.transform.position.y + magicVy * Time.deltaTime, PlayerZValue);
+            magic.transform.position = new Vector3(magic.transform.position.x + magicVx * Time.deltaTime, magic.transform.position.y + magicVy * Time.deltaTime, magic.transform.position.z);
 
             //check if offscreen.
             Vector3 screenPos = Camera.main.WorldToViewportPoint(GameManager.instance.transform.position);
@@ -46,8 +60,9 @@ public class Witch : Costume
                 magicVy = 0;
 
                 //cooldown activates here
+                
             }
-        }
+        }*/
 
     }
 
@@ -65,22 +80,22 @@ public class Witch : Costume
                 switch (direction)
                 {
                     case Direction.Left:
-                        magic = Instantiate(magicPrefab, new Vector3(transform.position.x - magicOffset, transform.position.y, PlayerZValue), Quaternion.identity);
+                        magic = Instantiate(magicPrefab, new Vector3(transform.position.x - magicOffset, transform.position.y, PlayerZValue - 1), Quaternion.identity);
                         magicVx = -magicSpeed;
                         break;
 
                     case Direction.Right:
-                        magic = Instantiate(magicPrefab, new Vector3(transform.position.x + magicOffset, transform.position.y, PlayerZValue), Quaternion.identity);
+                        magic = Instantiate(magicPrefab, new Vector3(transform.position.x + magicOffset, transform.position.y, PlayerZValue - 1), Quaternion.identity);
                         magicVx = magicSpeed;
                         break;
 
                     case Direction.Up:
-                        magic = Instantiate(magicPrefab, new Vector3(transform.position.x, transform.position.y + magicOffset, PlayerZValue), Quaternion.identity);
+                        magic = Instantiate(magicPrefab, new Vector3(transform.position.x, transform.position.y + magicOffset, PlayerZValue - 1), Quaternion.identity);
                         magicVy = magicSpeed;
                         break;
 
                     case Direction.Down:
-                        magic = Instantiate(magicPrefab, new Vector3(transform.position.x, transform.position.y - magicOffset, PlayerZValue), Quaternion.identity);
+                        magic = Instantiate(magicPrefab, new Vector3(transform.position.x, transform.position.y - magicOffset, PlayerZValue - 1), Quaternion.identity);
                         magicVy = -magicSpeed;
                         break;
 
