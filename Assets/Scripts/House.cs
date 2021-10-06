@@ -1,27 +1,40 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 /* A house can hold candy for players to pick up. Occasionally they may have more candy than the usual maximum capacity. A house can only be approached
  when its lights are on. */
 public class House : MonoBehaviour
 {
-    public int candyAmount;         //random amount from 1 to 10, with a small chance to be 20.
-    public float restockTime;       //time in seconds that must pass before house has candy
+    public int candyAmount;             //random amount from 1 to 10, with a small chance to be 20.
+    public float restockTime;           //time in seconds that must pass before house has candy. This value is randomized for each house.
     public float currentTime;
+    public bool candyAmountIsHidden;    //if true, players will not know how much candy a house has until they approach
+    public bool canHaveCandy;           //must be true in order to stock candy
 
     public Sprite houseLightsOff;
-    public Sprite houseLightsOn;
+    public Sprite houseLightsOn;        //this sprite is used when a house has candy available
+    public TextMeshProUGUI candyUI;     //displays candy stock
 
     //consts
     public float MaxCandyChance { get; } = 0.04f;  //4% chance
     public float HiddenCandyChance { get; } = 0.1f; //10% chance. If sucessful, the amount of candy a house has is hidden until player approaches house
     public int MaxCandyAmount { get; } = 10;
 
+
+    private void Start()
+    {
+        restockTime = 2;
+        currentTime = 0;
+        candyUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(transform.position.x, transform.position.y + 20);
+        canHaveCandy = true;
+    }
+
     //fill a house with candy.
     public void StockUp()
     {
-        float randNum = Random.Range(0, 1);
+        float randNum = Random.Range(0f, 1f);
 
         //check if house will have max candy
         if (randNum <= MaxCandyChance)
@@ -32,6 +45,14 @@ public class House : MonoBehaviour
         {
             candyAmount = Random.Range(1, MaxCandyAmount + 1);
         }
+
+        //is the candy amount hidden?
+        randNum = Random.Range(0f, 1f);
+        candyAmountIsHidden = randNum <= HiddenCandyChance;
+
+        candyUI.text = candyAmount.ToString();
+
+
     }
 
     public bool HasCandy()
@@ -39,17 +60,15 @@ public class House : MonoBehaviour
         return candyAmount > 0;
     }
 
-    private void Start()
-    {
-        restockTime = 2;
-        currentTime = 0;
-    }
     private void Update()
     {
-        if (!HasCandy() && Time.time > currentTime + restockTime)
+        if (canHaveCandy)
         {
-            StockUp();
-            currentTime = Time.time;
+            if (!HasCandy() && Time.time > currentTime + restockTime)
+            {
+                StockUp();
+                currentTime = Time.time;
+            }
         }
 
         //TODO: Figure out how to disable the box collider in the child component without disabling the parent.

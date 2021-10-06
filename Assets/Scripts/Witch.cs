@@ -20,7 +20,7 @@ public class Witch : Costume
     {
         if (instance != null && instance != this)
         {
-            Destroy(gameObject);    //Only want one instance of game manager
+            Destroy(gameObject);
             return;
         }
 
