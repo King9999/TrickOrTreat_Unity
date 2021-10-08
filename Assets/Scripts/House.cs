@@ -15,7 +15,7 @@ public class House : MonoBehaviour
 
     public Sprite houseLightsOff;
     public Sprite houseLightsOn;        //this sprite is used when a house has candy available
-    public TextMeshProUGUI candyUI;     //displays candy stock
+    //public TextMeshProUGUI candyUI;     //displays candy stock
 
     //consts
     public float MaxCandyChance { get; } = 0.04f;  //4% chance
@@ -27,8 +27,9 @@ public class House : MonoBehaviour
     {
         restockTime = 2;
         currentTime = 0;
-        candyUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(transform.position.x, transform.position.y + 20);
-        canHaveCandy = true;
+        //Vector3 worldPos = Camera.main.ScreenToWorldPoint(transform.position);
+        //candyUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(worldPos.x, worldPos.y + 20);
+        //canHaveCandy = true;
     }
 
     //fill a house with candy.
@@ -50,9 +51,13 @@ public class House : MonoBehaviour
         randNum = Random.Range(0f, 1f);
         candyAmountIsHidden = randNum <= HiddenCandyChance;
 
-        candyUI.text = candyAmount.ToString();
+        //turn the lights on
+        GetComponent<SpriteRenderer>().sprite = houseLightsOn;
 
-
+        /*if (candyAmountIsHidden)
+            candyUI.text = "??";
+        else
+            candyUI.text = candyAmount.ToString();*/
     }
 
     public bool HasCandy()
