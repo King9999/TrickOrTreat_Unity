@@ -21,15 +21,15 @@ public class House : MonoBehaviour
     public float MaxCandyChance { get; } = 0.04f;  //4% chance
     public float HiddenCandyChance { get; } = 0.1f; //10% chance. If sucessful, the amount of candy a house has is hidden until player approaches house
     public int MaxCandyAmount { get; } = 10;
+    public int MinRestockTime { get; } = 5;
+    public int MaxRestockTime { get; } = 10;
 
 
     private void Start()
     {
-        restockTime = 2;
+        restockTime = Random.Range(MinRestockTime, MaxRestockTime + 1);
         currentTime = 0;
-        //Vector3 worldPos = Camera.main.ScreenToWorldPoint(transform.position);
-        //candyUI.GetComponent<RectTransform>().anchoredPosition = new Vector2(worldPos.x, worldPos.y + 20);
-        //canHaveCandy = true;
+        canHaveCandy = false;
     }
 
     //fill a house with candy.
@@ -67,14 +67,18 @@ public class House : MonoBehaviour
 
     private void Update()
     {
-        if (canHaveCandy)
+        /*if (Time.time > currentTime + restockTime)
+            canHaveCandy = true;
+
+        if (canHaveCandy && HouseManager.instance.housesWithCandy < HouseManager.instance.TotalHousesWithCandy)
         {
-            if (!HasCandy() && Time.time > currentTime + restockTime)
-            {
-                StockUp();
-                currentTime = Time.time;
-            }
-        }
+            //if (!HasCandy() /*&& Time.time > currentTime + restockTime*///)
+            //{
+                //StockUp();
+                //currentTime = Time.time;
+                //HouseManager.instance.housesWithCandy++;
+            //}
+        //}
 
         //TODO: Figure out how to disable the box collider in the child component without disabling the parent.
         //GetComponentInChildren<BoxCollider2D>().enabled = false;
@@ -88,6 +92,34 @@ public class House : MonoBehaviour
         {
             GetComponentInChildren<BoxCollider2D>().enabled = false;
         }*/
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if (HasCandy())
+            {
+                Debug.Log("Collecting Candy");
+                //player starts collecting candy if the house has any available
+                candyAmountIsHidden = false;
+                Costume player = collision.GetComponent<Costume>();
+                player.candyAmount += player.candyTaken;
+                candyAmount -= player.candyTaken;               //removes candy from house
+
+                if (!HasCandy())
+                {
+                    //time to restock
+                    currentTime = Time.time;
+                    restockTime = Random.Range(MinRestockTime * 2, MaxRestockTime * 2 + 1);     //restock takes longer during a game
+                    canHaveCandy = false;
+
+                    //lights out!
+                    GetComponent<SpriteRenderer>().sprite = houseLightsOff;
+                    HouseManager.instance.housesWithCandy--;
+                }
+            }
+        }
     }
 
 

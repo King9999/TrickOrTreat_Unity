@@ -7,11 +7,25 @@ using TMPro;
 public class HouseManager : MonoBehaviour
 {
     public House[] houses;
-    public TextMeshProUGUI[] candyUI;     //displays candy stock
+    public TextMeshProUGUI[] candyUI;       //displays candy stock
+    public int housesWithCandy;                    //used to check when it's time for houses to stock up
 
     //consts
     public int TotalHousesWithCandy { get; } = 5;       //the maximum amount of houses that can have candy.
     public int TotalHouses { get; } = 10;
+
+    public static HouseManager instance;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +34,7 @@ public class HouseManager : MonoBehaviour
         //decide which houses have candy
 
         //house setup
-        int housesWithCandy = 0;
+        /*housesWithCandy = 0;
         for (int i = 0; i < TotalHouses; i++)
         {
             //candy counter setup
@@ -44,17 +58,31 @@ public class HouseManager : MonoBehaviour
             {
                 houses[i].canHaveCandy = false;
             }
-        }
+        }*/
     }
 
     // Update is called once per frame
     void Update()
     {
         //house update
-        for(int i = 0; i < TotalHouses; i++)
+        for (int i = 0; i < TotalHouses; i++)
         {
+            if (Time.time > houses[i].currentTime + houses[i].restockTime)
+                houses[i].canHaveCandy = true;
+
+            if (houses[i].canHaveCandy && !houses[i].HasCandy() && housesWithCandy < TotalHousesWithCandy)
+            {
+                
+                houses[i].StockUp(); 
+                housesWithCandy++;              
+            }
+       // }
+            //housesWithCandy = 0;
+        //for (int i = 0; i < TotalHouses; i++)
+        //{
             if (houses[i].HasCandy())
             {
+                //housesWithCandy++;
                 if (houses[i].candyAmountIsHidden)
                 {
                     candyUI[i].text = "??";
@@ -64,13 +92,25 @@ public class HouseManager : MonoBehaviour
                     candyUI[i].text = houses[i].candyAmount.ToString();
                 }
             }
-            else
+            else //no candy
             {
                 candyUI[i].text = "";
             }
 
         }
 
+        //check if any new houses can have candy and turn on lights.
+        /*while (housesWithCandy < TotalHousesWithCandy)
+        {
+            for (int i = 0; i < TotalHouses; i++)
+            {
+                if (houses[i].canHaveCandy)
+                {
+                    StockUp();
+                }
+            }
+
+        }*/
 
     }
 }
