@@ -17,6 +17,7 @@ public class Costume : MonoBehaviour
     public float moveSpeed = 1.3f;          //scales vx and vy. Lower value = slower speed
     public float actionTimer;                //how long a trick is active for.
     public bool isTrickActive = false;
+    public bool isCollectingCandy = false;
     public float currentTime = 0;           //used to track when trick can be used again.
 
     //player orientation. Used to determine where to generate an action
