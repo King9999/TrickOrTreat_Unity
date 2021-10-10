@@ -399,6 +399,7 @@ MonoBehaviour:
   candyPickupCurrentTime: 0
   candyAmountIsHidden: 0
   canHaveCandy: 0
+  candyBeingCollected: 0
   houseLightsOff: {fileID: 21300000, guid: 8af2954b51d67cc41be50325c97cd2a5, type: 3}
   houseLightsOn: {fileID: 21300000, guid: 43d7a9ed7c971af4ea40d48c28b11e05, type: 3}
 --- !u!114 &5801896523383393475
@@ -448,7 +449,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6652793335821659063}
-  m_BodyType: 2
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
