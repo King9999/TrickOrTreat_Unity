@@ -1,0 +1,8 @@
+TO DO LIST FOR TRICK OR TREAT
+---------------------------
+-Witch's magic shot does not interact with the house. Will try adding collision check in house script. *FIXED*
+-Randomize which houses get candy so that there aren't scenarios where a house never gets candy *FIXED*
+-Add AI opponents
+-Add netplay via PUN (not sure if I will do this)
+-Add UI for each player, including cooldown for tricks.
+-Prevent candy from continuously being taken from house even when player is away from it.

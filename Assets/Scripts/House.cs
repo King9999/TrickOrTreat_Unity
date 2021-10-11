@@ -17,8 +17,9 @@ public class House : MonoBehaviour
     Costume player;                     //reference to the player collecting candy
 
     public Sprite houseLightsOff;
-    public Sprite houseLightsOn;        //this sprite is used when a house has candy available
-    //public TextMeshProUGUI candyUI;     //displays candy stock
+    public Sprite houseLightsOn;            //this sprite is used when a house has candy available
+    public GameObject candyPickupPrefab;   //displays how much candy a player is taking from a house.
+    public List<GameObject> candyPickupList;
 
     //consts
     public float MaxCandyChance { get; } = 0.04f;  //4% chance
@@ -27,6 +28,7 @@ public class House : MonoBehaviour
     public int MinRestockTime { get; } = 5;
     public int MaxRestockTime { get; } = 10;
     public float CandyPickupRate { get; } = 0.5f;   //controls how quickly player acquires candy from a house.
+    public float CandyZValue { get; } = -3;
 
 
     private void Start()
@@ -35,6 +37,7 @@ public class House : MonoBehaviour
         currentTime = 0;
         canHaveCandy = false;
         candyBeingCollected = false;
+        candyPickupList = new List<GameObject>();
     }
 
     //fill a house with candy.
@@ -59,10 +62,6 @@ public class House : MonoBehaviour
         //turn the lights on
         GetComponent<SpriteRenderer>().sprite = houseLightsOn;
 
-        /*if (candyAmountIsHidden)
-            candyUI.text = "??";
-        else
-            candyUI.text = candyAmount.ToString();*/
     }
 
     public bool HasCandy()
@@ -72,36 +71,14 @@ public class House : MonoBehaviour
 
     private void Update()
     {
-        /*if (Time.time > currentTime + restockTime)
-            canHaveCandy = true;
-
-        if (canHaveCandy && HouseManager.instance.housesWithCandy < HouseManager.instance.TotalHousesWithCandy)
-        {
-            //if (!HasCandy() /*&& Time.time > currentTime + restockTime*///)
-            //{
-                //StockUp();
-                //currentTime = Time.time;
-                //HouseManager.instance.housesWithCandy++;
-            //}
-        //}
-
-        //TODO: Figure out how to disable the box collider in the child component without disabling the parent.
-        //GetComponentInChildren<BoxCollider2D>().enabled = false;
-        
-
-        /*if (HasCandy())
-        {
-            GetComponentInChildren<BoxCollider2D>().enabled = true;
-        }
-        else
-        {
-            GetComponentInChildren<BoxCollider2D>().enabled = false;
-        }*/
-
         if (candyBeingCollected && Time.time > candyPickupCurrentTime + CandyPickupRate)
         {
             player.candyAmount += player.candyTaken;
             candyAmount -= player.candyTaken;               //removes candy from house
+
+            GameObject candyLabel = Instantiate(candyPickupPrefab, new Vector3(player.transform.position.x, player.transform.position.y, CandyZValue), Quaternion.identity);
+            candyLabel.GetComponentInChildren<TextMeshProUGUI>().text = "+" + player.candyTaken;    //text mesh is a child component in the prefab
+            candyPickupList.Add(candyLabel);
 
             candyPickupCurrentTime = Time.time;
 
@@ -118,13 +95,19 @@ public class House : MonoBehaviour
                 HouseManager.instance.housesWithCandy--;
             }
         }
+
+        //coroutine management
+        //if (candyBeingCollected)
+        //{
+            StartCoroutine(PickupCandy());
+        //}
     }
 
     private void OnTriggerStay2D(Collider2D collision)  //this method allows for continuous execution of the code every frame as long as there's a collision
     {
         if (collision.CompareTag("Player"))
         {
-            if (HasCandy() /*&& Time.time > candyPickupCurrentTime + CandyPickupRate*/)
+            if (HasCandy())
             {
                 
                 Debug.Log("Collecting Candy");
@@ -132,31 +115,31 @@ public class House : MonoBehaviour
                 candyAmountIsHidden = false;
                 candyBeingCollected = true;
                 player = collision.GetComponent<Costume>();     //need reference to the player currently at the house
-                /*player.candyAmount += player.candyTaken;
-                candyAmount -= player.candyTaken;               //removes candy from house
-
-                //candyPickupCurrentTime = Time.time;
-
-                if (!HasCandy())
-                {
-                    //time to restock
-                    currentTime = Time.time;
-                    restockTime = Random.Range(MinRestockTime * 2, MaxRestockTime * 2 + 1);     //restock takes longer during a game
-                    canHaveCandy = false;
-                    candyBeingCollected = false;
-
-                    //lights out!
-                    GetComponent<SpriteRenderer>().sprite = houseLightsOff;
-                    HouseManager.instance.housesWithCandy--;
-                }*/
                 
             }
         }
-        else
+        /*else
+        {
+            candyBeingCollected = false;
+        }*/
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
         {
             candyBeingCollected = false;
         }
     }
 
-
+    IEnumerator PickupCandy()
+    {
+        for (int i = 0; i < candyPickupList.Count; i++)
+        {
+            candyPickupList[i].transform.position = new Vector3(candyPickupList[i].transform.position.x, candyPickupList[i].transform.position.y + 1 * Time.deltaTime,
+                candyPickupList[i].transform.position.z);
+            yield return null;
+        }
+       
+    }
 }
