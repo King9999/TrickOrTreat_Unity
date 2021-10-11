@@ -9,10 +9,10 @@ public class ClampCandyText : MonoBehaviour
     public TextMeshProUGUI textUI;
 
     // Start is called before the first frame update
-    void Start()
+    void Update()
     {
         Vector3 namePos = Camera.main.WorldToScreenPoint(transform.position);
-        textUI.transform.position = new Vector3(namePos.x + 10, namePos.y, namePos.z);
+        textUI.transform.position = new Vector3(namePos.x + 15, namePos.y, namePos.z);
 
     }
 }

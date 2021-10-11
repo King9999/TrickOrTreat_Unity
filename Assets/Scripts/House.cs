@@ -38,6 +38,7 @@ public class House : MonoBehaviour
         canHaveCandy = false;
         candyBeingCollected = false;
         candyPickupList = new List<GameObject>();
+        Random.InitState(10);           //here for testing only, must be removed eventually.
     }
 
     //fill a house with candy.
@@ -136,10 +137,32 @@ public class House : MonoBehaviour
     {
         for (int i = 0; i < candyPickupList.Count; i++)
         {
-            candyPickupList[i].transform.position = new Vector3(candyPickupList[i].transform.position.x, candyPickupList[i].transform.position.y + 1 * Time.deltaTime,
-                candyPickupList[i].transform.position.z);
-            yield return null;
+            //player gets feedback when they collect candy from a house. The feedback scrolls and gradually disappears
+            SpriteRenderer sr = candyPickupList[i].GetComponent<SpriteRenderer>();
+            float scrollSpeed = 0.02f;
+            while (sr != null && sr.color.a > 0)
+            {
+                candyPickupList[i].transform.position = new Vector3(candyPickupList[i].transform.position.x, candyPickupList[i].transform.position.y + scrollSpeed / 2 * Time.deltaTime,
+                    candyPickupList[i].transform.position.z);
+                candyPickupList[i].GetComponentInChildren<TextMeshProUGUI>().alpha -= scrollSpeed * Time.deltaTime;
+                sr.color = new Color(1, 1, 1, sr.color.a - scrollSpeed * Time.deltaTime);
+                candyPickupList[i].GetComponent<SpriteRenderer>().color = sr.color;
+
+                yield return null;
+            }
+            
         }
-       
+
+        //cleanup
+        for (int i = 0; i < candyPickupList.Count; i++)
+        {
+            Destroy(candyPickupList[i]);
+        }
+        if (candyPickupList.Capacity > 0)
+        {
+            candyPickupList.Clear();
+            candyPickupList.Capacity = 0;
+        }
+
     }
 }
