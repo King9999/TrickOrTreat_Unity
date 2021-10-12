@@ -19,7 +19,10 @@ public class House : MonoBehaviour
     public Sprite houseLightsOff;
     public Sprite houseLightsOn;            //this sprite is used when a house has candy available
     public GameObject candyPickupPrefab;   //displays how much candy a player is taking from a house.
-    public List<GameObject> candyPickupList;
+    [HideInInspector] public List<GameObject> candyPickupList;
+    public GameObject trickOrTreatPrefab;   //sprite that appears when player approaches house.
+    [HideInInspector] public List<GameObject> trickOrTreatList;
+    bool isOnTrigger;                       //prevents trick or treat bubble from appearing more than once
 
     //consts
     public float MaxCandyChance { get; } = 0.04f;  //4% chance
@@ -38,7 +41,8 @@ public class House : MonoBehaviour
         canHaveCandy = false;
         candyBeingCollected = false;
         candyPickupList = new List<GameObject>();
-        Random.InitState(10);           //here for testing only, must be removed eventually.
+        trickOrTreatList = new List<GameObject>();
+        isOnTrigger = false;
     }
 
     //fill a house with candy.
@@ -116,13 +120,17 @@ public class House : MonoBehaviour
                 candyAmountIsHidden = false;
                 candyBeingCollected = true;
                 player = collision.GetComponent<Costume>();     //need reference to the player currently at the house
-                
+
+                //player yells "trick or treat"
+                if (!isOnTrigger)
+                {
+                    isOnTrigger = true;
+                    GameObject bubble = Instantiate(trickOrTreatPrefab, new Vector3(player.transform.position.x - 0.5f, player.transform.position.y + 0.5f, trickOrTreatPrefab.transform.position.z),
+                        Quaternion.identity);
+                    trickOrTreatList.Add(bubble);
+                }
             }
         }
-        /*else
-        {
-            candyBeingCollected = false;
-        }*/
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -130,6 +138,7 @@ public class House : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             candyBeingCollected = false;
+            isOnTrigger = false;
         }
     }
 

@@ -404,6 +404,8 @@ MonoBehaviour:
   houseLightsOn: {fileID: 21300000, guid: 43d7a9ed7c971af4ea40d48c28b11e05, type: 3}
   candyPickupPrefab: {fileID: 1152248849339489545, guid: 909a923e2267e104591e5168cacbdf3f, type: 3}
   candyPickupList: []
+  trickOrTreatPrefab: {fileID: 6745256834740562971, guid: 05cfeedc74481a54da37cb2cc965944f, type: 3}
+  trickOrTreatList: []
 --- !u!114 &5801896523383393475
 MonoBehaviour:
   m_ObjectHideFlags: 0

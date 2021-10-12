@@ -27,6 +27,11 @@ public class HouseManager : MonoBehaviour
 
         instance = this;
     }
+    private void Start()
+    {
+        //Random.InitState(1000);
+
+    }
 
 
     // Update is called once per frame
