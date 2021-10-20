@@ -22,6 +22,7 @@ public class House : MonoBehaviour
     [HideInInspector] public List<GameObject> candyPickupList;
     public GameObject trickOrTreatPrefab;   //sprite that appears when player approaches house.
     [HideInInspector] public List<GameObject> trickOrTreatList;
+    public List<float> bubbleTimerList;               //controls when the trick or treat bubbles are destroyed
     bool isOnTrigger;                       //prevents trick or treat bubble from appearing more than once
 
     //consts
@@ -30,8 +31,9 @@ public class House : MonoBehaviour
     public int MaxCandyAmount { get; } = 10;
     public int MinRestockTime { get; } = 5;
     public int MaxRestockTime { get; } = 10;
-    public float CandyPickupRate { get; } = 0.5f;   //controls how quickly player acquires candy from a house.
+    public float CandyPickupRate { get; } = 0.5f;   //time in seconds that player acquires candy from a house.
     public float CandyZValue { get; } = -3;
+    float bubbleActiveTime { get; } = 1f;           //time in seconds before the "trick or treat" bubble is removed
 
 
     private void Start()
@@ -42,6 +44,7 @@ public class House : MonoBehaviour
         candyBeingCollected = false;
         candyPickupList = new List<GameObject>();
         trickOrTreatList = new List<GameObject>();
+        bubbleTimerList = new List<float>();
         isOnTrigger = false;
     }
 
@@ -101,13 +104,12 @@ public class House : MonoBehaviour
             }
         }
 
-        //coroutine management
-        //if (candyBeingCollected)
-        //{
-            StartCoroutine(PickupCandy());
-        //}
+        //coroutine management     
+        StartCoroutine(PickupCandy());
+        StartCoroutine(ManageTrickOrTreatBubbles());
     }
 
+   
     private void OnTriggerStay2D(Collider2D collision)  //this method allows for continuous execution of the code every frame as long as there's a collision
     {
         if (collision.CompareTag("Player"))
@@ -128,6 +130,7 @@ public class House : MonoBehaviour
                     GameObject bubble = Instantiate(trickOrTreatPrefab, new Vector3(player.transform.position.x - 0.5f, player.transform.position.y + 0.5f, trickOrTreatPrefab.transform.position.z),
                         Quaternion.identity);
                     trickOrTreatList.Add(bubble);
+                    bubbleTimerList.Add(Time.time);
                 }
             }
         }
@@ -142,6 +145,7 @@ public class House : MonoBehaviour
         }
     }
 
+    #region Coroutines
     IEnumerator PickupCandy()
     {
         for (int i = 0; i < candyPickupList.Count; i++)
@@ -174,4 +178,30 @@ public class House : MonoBehaviour
         }
 
     }
+
+    IEnumerator ManageTrickOrTreatBubbles()
+    {
+        for (int i = 0; i < bubbleTimerList.Count; i++)
+        {
+            if (Time.time > bubbleTimerList[i] + bubbleActiveTime)
+            {
+                //remove corresponding bubble
+                Destroy(trickOrTreatList[i]);
+            }
+            yield return null;
+        }
+
+        //clean up
+        /*if (trickOrTreatList.Capacity > 0)
+        {
+            trickOrTreatList.Clear();
+            trickOrTreatList.Capacity = 0;
+        }*/
+        /*if (bubbleTimerList.Capacity > 0)
+        {
+            bubbleTimerList.Clear();
+            bubbleTimerList.Capacity = 0;
+        }*/
+    }
+    #endregion
 }
