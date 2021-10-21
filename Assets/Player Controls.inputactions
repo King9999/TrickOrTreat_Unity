@@ -1,12 +1,12 @@
 {
-    "name": "New Controls",
+    "name": "Player Controls",
     "maps": [
         {
             "name": "Player Movement",
             "id": "ff5bdb2b-6309-4ece-8e6a-839c84819e0b",
             "actions": [
                 {
-                    "name": "Move Up",
+                    "name": "Move Up P1",
                     "type": "Button",
                     "id": "1846161e-d4ed-4be5-88ee-b90150b011f7",
                     "expectedControlType": "Button",
@@ -14,7 +14,15 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Move Down",
+                    "name": "Move Up P2",
+                    "type": "Button",
+                    "id": "7269fb4a-ce3a-4ad7-88c6-2ec37fb15fc0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Move Down P1",
                     "type": "Button",
                     "id": "6bfe34fd-33e5-47bd-add1-8b844ac2ee19",
                     "expectedControlType": "Button",
@@ -22,7 +30,15 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Move Left",
+                    "name": "Move Down P2",
+                    "type": "Button",
+                    "id": "81d0a553-f404-491d-8eca-9991724099b2",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Move Left P1",
                     "type": "Button",
                     "id": "13e0bf21-1796-4a86-9bab-346a246ed69f",
                     "expectedControlType": "Button",
@@ -30,7 +46,15 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Move Right",
+                    "name": "Move Left P2",
+                    "type": "Button",
+                    "id": "70be6a96-faff-43d4-93b5-8e0f631389fe",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Move Right P1",
                     "type": "Button",
                     "id": "4ff7639d-d83d-4281-a2d4-f99da763aae4",
                     "expectedControlType": "Button",
@@ -38,9 +62,25 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Trick",
+                    "name": "Move Right P2",
+                    "type": "Button",
+                    "id": "1bde6fb8-4381-4e61-bd9c-ab89739eb935",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": " Trick P1",
                     "type": "Button",
                     "id": "cb191887-2e7d-4d4f-a454-68dcf3bd83cb",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": " Trick P2",
+                    "type": "Button",
+                    "id": "3788337f-20d5-4063-8acd-6c965361bc0b",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -54,7 +94,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move Up",
+                    "action": "Move Up P1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -65,7 +105,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move Down",
+                    "action": "Move Down P1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -76,7 +116,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move Left",
+                    "action": "Move Left P1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -87,7 +127,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Move Right",
+                    "action": "Move Right P1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -98,7 +138,260 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Trick",
+                    "action": " Trick P1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5fc452c4-0be9-48df-9fce-7d38a62f3496",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move Up P2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "48d688ac-5176-4567-8962-b95a2020801b",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move Down P2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5b789905-9f8a-4e16-afa1-f64479222bd9",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move Left P2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "92b55472-1cfd-4cfd-99ec-d3ac7ab4d99f",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Move Right P2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a7f4ea2e-bf38-4cce-bf56-b9137609d871",
+                    "path": "<Keyboard>/rightShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": " Trick P2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Menu Controls",
+            "id": "e7645829-a1b0-4b4f-abd1-f8f2fe3eaf56",
+            "actions": [
+                {
+                    "name": "Up P1",
+                    "type": "Button",
+                    "id": "14a5a0f4-e88d-41ba-9ed8-f6a8901d746b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Up P2",
+                    "type": "Button",
+                    "id": "69e50f16-1986-4b64-9c88-832e43086342",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Down P1",
+                    "type": "Button",
+                    "id": "aa01f696-f10c-4cc7-9037-ae3805e7e6b8",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Down P2",
+                    "type": "Button",
+                    "id": "b1519803-39e3-4cfe-a536-df3733197971",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Left P1",
+                    "type": "Button",
+                    "id": "64f4e10f-63fe-43c5-a2a3-476340bdd08e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Left P2",
+                    "type": "Button",
+                    "id": "d930ee73-e03b-4d31-b5b6-a756c270fca0",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Right P1",
+                    "type": "Button",
+                    "id": "38c72653-7617-4df7-b0b3-4aed34fd273d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Right P2",
+                    "type": "Button",
+                    "id": "5ab0a75f-3c48-41f6-bf4a-4961954a6221",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Confirm P1",
+                    "type": "Button",
+                    "id": "ed7d7999-dfcc-49df-ae61-ab26551d8167",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Confirm P2",
+                    "type": "Button",
+                    "id": "5b71d8c1-c725-4191-91d6-14d0436e2787",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d6a697ed-1772-499e-bfdb-cc22c7d4399d",
+                    "path": "<Keyboard>/w",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up P1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5d5c82fa-d367-4c7a-b200-86acddfd6bac",
+                    "path": "<Keyboard>/upArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up P2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "c30b80a3-a12d-45af-9595-cfe412b336f1",
+                    "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down P1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "43528203-1c94-41a1-a0c3-e1465b86c926",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down P2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a7d31e57-70bf-4340-9726-ec9ccf42e20d",
+                    "path": "<Keyboard>/a",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left P1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1e172f46-7258-49f7-b3f6-1264d8373e16",
+                    "path": "<Keyboard>/leftArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left P2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "31d8bda6-09c4-4c03-9bb5-1bf1cc75b76b",
+                    "path": "<Keyboard>/d",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right P1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a7be76ec-3cba-4b57-b489-114fcc81404a",
+                    "path": "<Keyboard>/rightArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right P2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4cf19556-0f7c-4ad4-af15-1e3ea3ba8223",
+                    "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Confirm P1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2b511535-77c0-4d81-bc78-07d93f205299",
+                    "path": "<Keyboard>/rightShift",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Confirm P2",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

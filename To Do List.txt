@@ -6,3 +6,4 @@ TO DO LIST FOR TRICK OR TREAT
 -Add netplay via PUN (not sure if I will do this)
 -Add UI for each player, including cooldown for tricks.
 -Prevent candy from continuously being taken from house even when player is away from it. *FIXED*
+-Figure out how to get at least two gamepads to work
