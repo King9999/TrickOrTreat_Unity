@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //This script manages the number of players in the game, as well as which costumes they picked.
 public class PlayerManager : MonoBehaviour
@@ -13,6 +14,12 @@ public class PlayerManager : MonoBehaviour
     public GameObject knightPrefab;
     public GameObject princessPrefab;
     public GameObject witchPrefab;
+
+    //bools
+    public bool p1Picked;
+    public bool p2Picked;
+    public bool allPlayersSelectedCostumes;            //used to move to game screen when true.
+    bool onGameScreen;
 
     //consts
     const int MAX_PLAYERS = 4;
@@ -47,11 +54,22 @@ public class PlayerManager : MonoBehaviour
     void Start()
     {
         playerCount = MinPlayers;
+        allPlayersSelectedCostumes = false;
+        onGameScreen = false;
+        p1Picked = false;
+        p2Picked = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (p1Picked && p2Picked)
+            allPlayersSelectedCostumes = true;
+
+        if (!onGameScreen && allPlayersSelectedCostumes)
+        {
+            onGameScreen = true;
+            SceneManager.LoadScene("Game");
+        }
     }
 }

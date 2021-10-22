@@ -42,6 +42,10 @@ public class Cursor : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //move to next screen
+        //if (PlayerManager.instance.p1Picked == true && p2Picked == true)
+            //PlayerManager.instance.allPlayersSelectedCostumes = true;
+
         //update cursor's location if necessary
         transform.position = new Vector3(costumes[(int)currentCostume].transform.position.x + xOffset, costumes[(int)currentCostume].transform.position.y + yOffset, transform.position.z);
     }
@@ -86,12 +90,12 @@ public class Cursor : MonoBehaviour
             if (p1Cursor == true)
             {
                 PlayerManager.instance.currentPlayer = PlayerManager.Player.One;
-                p1Picked = true;
+                PlayerManager.instance.p1Picked = true;
             }
             else if (p2Cursor == true)
             {
                 PlayerManager.instance.currentPlayer = PlayerManager.Player.Two;
-                p2Picked = true;
+                PlayerManager.instance.p2Picked = true;
             }
 
             //get costume object and send it to game
@@ -119,7 +123,8 @@ public class Cursor : MonoBehaviour
             }
 
             //move to next screen
-            SceneManager.LoadScene("Game");
+            if (p1Picked == true && p2Picked == true)
+                SceneManager.LoadScene("Game");
 
             /*if (currentMenu == START)
             {

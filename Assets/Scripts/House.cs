@@ -24,6 +24,7 @@ public class House : MonoBehaviour
     [HideInInspector] public List<GameObject> trickOrTreatList;
     public List<float> bubbleTimerList;               //controls when the trick or treat bubbles are destroyed
     bool isOnTrigger;                       //prevents trick or treat bubble from appearing more than once
+    int candyTaken;                     //value varies depending on amount of candy remaining in house. This is really only for the princess.
 
     //consts
     public float MaxCandyChance { get; } = 0.04f;  //4% chance
@@ -81,11 +82,22 @@ public class House : MonoBehaviour
     {
         if (candyBeingCollected && Time.time > candyPickupCurrentTime + CandyPickupRate)
         {
-            player.candyAmount += player.candyTaken;
-            candyAmount -= player.candyTaken;               //removes candy from house
+            
+            if (candyAmount < player.candyTaken)           //need to do this check for the princess
+            {
+                candyTaken = candyAmount;
+            }
+            else
+            {
+                candyTaken = player.candyTaken;              
+            }
+
+            //remove candy from house
+            player.candyAmount += candyTaken;
+            candyAmount -= candyTaken;
 
             GameObject candyLabel = Instantiate(candyPickupPrefab, new Vector3(player.transform.position.x, player.transform.position.y, CandyZValue), Quaternion.identity);
-            candyLabel.GetComponentInChildren<TextMeshProUGUI>().text = "+" + player.candyTaken;    //text mesh is a child component in the prefab
+            candyLabel.GetComponentInChildren<TextMeshProUGUI>().text = "+" + candyTaken;    //text mesh is a child component in the prefab
             candyPickupList.Add(candyLabel);
 
             candyPickupCurrentTime = Time.time;
