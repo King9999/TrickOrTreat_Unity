@@ -8,6 +8,9 @@ public class Cursor : MonoBehaviour
 {
     public Image[] costumes = new Image[MAX_COSTUMES];  //contain references to the costumes on select screen. Needed for cursor placement.
 
+    public bool p1Cursor;
+    public bool p2Cursor;       //used to determine who is player 1 or 2
+
     enum CostumeType
     {
         Ghost, Knight, Princess, Witch
@@ -74,7 +77,23 @@ public class Cursor : MonoBehaviour
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            //check what player 1 and 2 selected and carry that info over to game screen.
+            //which player is this?
+            if (p1Cursor == true)
+                PlayerManager.instance.currentPlayer = PlayerManager.Player.One;
+            else if (p2Cursor == true)
+                PlayerManager.instance.currentPlayer = PlayerManager.Player.Two;
+
+            //get costume object and send it to game
+            switch (currentCostume)
+            {
+                case CostumeType.Ghost:
+                    //PlayerManager.instance.playerList[(int)PlayerManager.instance.currentPlayer] = Instantiate(ghost)
+                    break;
+
+                default:
+                    break;
+            }
+
             /*if (currentMenu == START)
             {
                 //load game

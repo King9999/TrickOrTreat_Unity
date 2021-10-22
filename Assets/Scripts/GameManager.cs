@@ -5,19 +5,21 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
-    public Costume[] playerList = new Costume[MaxPlayers];           //reference to active players. Four players maximum, 2 players minimum.
+    public Costume[] playerList = new Costume[MAX_PLAYERS];           //reference to active players. Four players maximum, 2 players minimum. Player 1 is index 0.
     public int playerCount;                                         //number of active players
-    public GameObject[] spawnPoints = new GameObject[MaxPlayers];   //players begin at one of these points at random
+    public GameObject[] spawnPoints = new GameObject[MAX_PLAYERS];   //players begin at one of these points at random
 
     public enum CostumeType
     {
         Ghost, Knight, Princess, Witch
     }
 
+    
+
     //consts
     public float ScreenBoundaryX { get; } = 10.24f;                 //calculated by dividing screen width by PPU (100).
     public float ScreenBoundaryY { get; } = 7.68f;                 //calculated by dividing screen height by PPU (100). The height is actually higher but a portion of it is for UI.
-    const int MaxPlayers = 4;
+    const int MAX_PLAYERS = 4;
     int MinPlayers { get; } = 2;
 
     private void Awake()
