@@ -16,11 +16,14 @@ public class PlayerManager : MonoBehaviour
 
     //consts
     const int MAX_PLAYERS = 4;
+    int MinPlayers { get; } = 2;
 
-    enum CostumeType
+    public enum CostumeType
     {
         Ghost, Knight, Princess, Witch
     }
+
+    public CostumeType[] selectedCostumes = new CostumeType[MAX_PLAYERS];      
 
     public enum Player
     {
@@ -38,12 +41,12 @@ public class PlayerManager : MonoBehaviour
         }
 
         instance = this;
-        DontDestroyOnLoad(instance);    //need this object to survive so game manager can use it
+        DontDestroyOnLoad(gameObject);    //need this object to survive so game manager can use it
     }
     // Start is called before the first frame update
     void Start()
     {
-        playerCount = 2;
+        playerCount = MinPlayers;
     }
 
     // Update is called once per frame

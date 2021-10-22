@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class Cursor : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class Cursor : MonoBehaviour
 
     public bool p1Cursor;
     public bool p2Cursor;       //used to determine who is player 1 or 2
+    public bool p1Picked;
+    public bool p2Picked;       //once all players choose, move to game screen.
 
     enum CostumeType
     {
@@ -32,6 +35,8 @@ public class Cursor : MonoBehaviour
     {
         //set initial cursor position. They can occupy same space but players must select different costumes.
         transform.position = new Vector3(costumes[(int)CostumeType.Ghost].transform.position.x + xOffset, costumes[(int)CostumeType.Ghost].transform.position.y + yOffset, transform.position.z);
+        p1Picked = false;
+        p2Picked = false;
     }
 
     // Update is called once per frame
@@ -79,20 +84,42 @@ public class Cursor : MonoBehaviour
         {
             //which player is this?
             if (p1Cursor == true)
+            {
                 PlayerManager.instance.currentPlayer = PlayerManager.Player.One;
+                p1Picked = true;
+            }
             else if (p2Cursor == true)
+            {
                 PlayerManager.instance.currentPlayer = PlayerManager.Player.Two;
+                p2Picked = true;
+            }
 
             //get costume object and send it to game
             switch (currentCostume)
             {
                 case CostumeType.Ghost:
-                    //PlayerManager.instance.playerList[(int)PlayerManager.instance.currentPlayer] = Instantiate(ghost)
+                    //PlayerManager.instance.playerList[(int)PlayerManager.instance.currentPlayer] = Instantiate(PlayerManager.instance.ghostPrefab);
+                    PlayerManager.instance.selectedCostumes[(int)PlayerManager.instance.currentPlayer] = PlayerManager.CostumeType.Ghost;
+                    break;
+
+                case CostumeType.Knight:
+                    PlayerManager.instance.selectedCostumes[(int)PlayerManager.instance.currentPlayer] = PlayerManager.CostumeType.Knight;
+                    break;
+
+                case CostumeType.Princess:
+                    PlayerManager.instance.selectedCostumes[(int)PlayerManager.instance.currentPlayer] = PlayerManager.CostumeType.Princess;
+                    break;
+
+                case CostumeType.Witch:
+                    PlayerManager.instance.selectedCostumes[(int)PlayerManager.instance.currentPlayer] = PlayerManager.CostumeType.Witch;
                     break;
 
                 default:
                     break;
             }
+
+            //move to next screen
+            SceneManager.LoadScene("Game");
 
             /*if (currentMenu == START)
             {

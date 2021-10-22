@@ -18,7 +18,7 @@ public class Princess : Costume
         initCooldown = 1;
         dropAmount = 5;
         candyTaken = 2;
-        moveSpeed = 1.5f;
+        moveSpeed = 1.65f;
         actionTimer = 1;
     }
 
