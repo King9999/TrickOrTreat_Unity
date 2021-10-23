@@ -41,22 +41,30 @@ public class GameManager : MonoBehaviour
             switch(PlayerManager.instance.selectedCostumes[i])
             {
                 case PlayerManager.CostumeType.Ghost:
-                    PlayerManager.instance.playerList[(int)PlayerManager.instance.currentPlayer] = Instantiate(PlayerManager.instance.ghostPrefab);
+                    PlayerManager.instance.playerList[i] = Instantiate(PlayerManager.instance.ghostPrefab);
                     //setup player icon here
                     break;
 
                 case PlayerManager.CostumeType.Knight:
-                    PlayerManager.instance.playerList[(int)PlayerManager.instance.currentPlayer] = Instantiate(PlayerManager.instance.knightPrefab);
+                    PlayerManager.instance.playerList[i] = Instantiate(PlayerManager.instance.knightPrefab);
                     break;
 
                 case PlayerManager.CostumeType.Princess:
-                    PlayerManager.instance.playerList[(int)PlayerManager.instance.currentPlayer] = Instantiate(PlayerManager.instance.princessPrefab);
+                    PlayerManager.instance.playerList[i] = Instantiate(PlayerManager.instance.princessPrefab);
                     break;
 
                 case PlayerManager.CostumeType.Witch:
-                    PlayerManager.instance.playerList[(int)PlayerManager.instance.currentPlayer] = Instantiate(PlayerManager.instance.witchPrefab);
+                    PlayerManager.instance.playerList[i] = Instantiate(PlayerManager.instance.witchPrefab);
                     break;
             }
+
+            //set player's costume in UI
+            //PlayerManager.instance.playerList[(int)PlayerManager.instance.currentPlayer]
+            //for (int i = 0; i < PlayerManager.instance.playerCount; i++)
+            //{
+                //UI.instance.playerIcons[i].sprite = PlayerManager.instance.playerList[i].GetComponent<SpriteRenderer>().sprite;
+            //}
+            //set candy counter
 
             //assign the correct control setup to player 2.
         }
