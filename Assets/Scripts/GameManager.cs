@@ -78,7 +78,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         //check cooldown timers
-        for (int i = 0; i < PlayerManager.instance.playerCount; i++)
+        /*for (int i = 0; i < PlayerManager.instance.playerCount; i++)
         {
             Costume player = PlayerManager.instance.playerList[i].GetComponent<Costume>();
             //float minValue = 0;
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
 
             if (!player.isTrickActive && player.TrickIsCharging())
             {
-                //show cooldown bar and update it
+                //show cooldown bar and update it. Must subtract player.currentTime (which acts as the minimum value) on both sides for accurate reading of bar.
                 UI.instance.fillBars[i].enabled = true;
                 UI.instance.fillBars[i].fillAmount = (Time.time - player.currentTime) / (UI.instance.cooldownTimers[i] - player.currentTime);
             }
@@ -101,6 +101,6 @@ public class GameManager : MonoBehaviour
                 //UI.instance.fillBars[i].fillAmount = 0;
                 UI.instance.fillBars[i].enabled = false;
             }
-        }
+        }*/
     }
 }

@@ -43,16 +43,40 @@ public class UI : MonoBehaviour
             fillBars[i].fillAmount = 0;
         }
 
-        //fill.fillAmount = 0.5f;
     }
 
-   
+
     void Update()
     {
         //Update candy scores
         for (int i = 0; i < PlayerManager.instance.playerCount; i++)
         {
             playerCandyCounters[i].text = "x" + PlayerManager.instance.playerList[i].GetComponent<Costume>().candyAmount;
+        }
+
+        /*******Update cooldown timers*****/
+        for (int i = 0; i < PlayerManager.instance.playerCount; i++)
+        {
+            Costume player = PlayerManager.instance.playerList[i].GetComponent<Costume>();
+
+            //did a player use a trick recently?
+            if (player.isTrickActive)
+            {
+               cooldownTimers[i] = player.currentTime + player.cooldown;
+            }
+
+            if (!player.isTrickActive && player.TrickIsCharging())
+            {
+                //show cooldown bar and update it. Must subtract player.currentTime (which acts as the minimum value) on both sides for accurate reading of bar.
+                fillBars[i].enabled = true;
+                trickText[i].alpha = 0.3f;
+                fillBars[i].fillAmount = (Time.time - player.currentTime) / (UI.instance.cooldownTimers[i] - player.currentTime);
+            }
+            else
+            {
+                fillBars[i].enabled = false;
+                trickText[i].alpha = 1;
+            }
         }
     }
 }
