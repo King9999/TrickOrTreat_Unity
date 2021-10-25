@@ -144,11 +144,15 @@ public class Costume : MonoBehaviour
     //check for collision with candy triggers
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        /*if(collision.CompareTag("Trigger"))
+        //picking up dropped candy
+        if(collision.CompareTag("Candy"))
         {
-            Debug.Log("Collecting Candy");
-        }*/
+            candyAmount += 1;
+            Destroy(collision.gameObject);
+            Debug.Log(name + " picked up Candy");
+        }
 
+        //getting hit by a trick
         if (collision.CompareTag("Trick"))
         {
             Debug.Log(name + " hit");

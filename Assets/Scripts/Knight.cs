@@ -10,11 +10,13 @@ public class Knight : Costume
     GameObject sword;
     float swordOffset = 0.4f;                   //used to position the sword away from player.
 
+    float SwordZValue { get; } = -2;
+
     // Start is called before the first frame update
     void Start()
     {
         name = "Knight";
-        initCooldown = 1;
+        initCooldown = 0.3f;
         dropAmount = 2;
         candyTaken = 1;
         moveSpeed = 1f;
@@ -30,6 +32,7 @@ public class Knight : Costume
             vx = 0;
             vy = 0;
         }
+        
 
         //check action timer
         if (isTrickActive && Time.time > currentTime + actionTimer)
@@ -54,22 +57,22 @@ public class Knight : Costume
                 switch(direction)
                 {
                     case Direction.Left:
-                        sword = Instantiate(swordPrefab, new Vector3(transform.position.x - swordOffset, transform.position.y, PlayerZValue), Quaternion.identity);
+                        sword = Instantiate(swordPrefab, new Vector3(transform.position.x - swordOffset, transform.position.y, SwordZValue), Quaternion.identity);
                         break;
 
                     case Direction.Right:
-                        sword = Instantiate(swordPrefab, new Vector3(transform.position.x + swordOffset, transform.position.y, PlayerZValue), Quaternion.identity);
+                        sword = Instantiate(swordPrefab, new Vector3(transform.position.x + swordOffset, transform.position.y, SwordZValue), Quaternion.identity);
                         sword.transform.localScale = new Vector3(sword.transform.localScale.x * -1, sword.transform.localScale.y, sword.transform.localScale.z);    //flips sprite in opposite direction
                         break;
 
                     case Direction.Up:
-                        sword = Instantiate(swordPrefab, new Vector3(transform.position.x, transform.position.y + swordOffset, PlayerZValue), Quaternion.identity);
+                        sword = Instantiate(swordPrefab, new Vector3(transform.position.x, transform.position.y + swordOffset, SwordZValue), Quaternion.identity);
                         //sword.transform.Rotate(sword.transform.localRotation.x, sword.transform.localRotation.y, sword.transform.localRotation.z * -90);
                         sword.transform.Rotate(Vector3.forward * -90);
                         break;
 
                     case Direction.Down:
-                        sword = Instantiate(swordPrefab, new Vector3(transform.position.x, transform.position.y - swordOffset, PlayerZValue), Quaternion.identity);
+                        sword = Instantiate(swordPrefab, new Vector3(transform.position.x, transform.position.y - swordOffset, SwordZValue), Quaternion.identity);
                         sword.transform.Rotate(Vector3.forward * 90);
                         break;
 
