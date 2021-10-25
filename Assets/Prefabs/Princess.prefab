@@ -135,6 +135,7 @@ MonoBehaviour:
   moveSpeed: 1
   actionTimer: 0
   isTrickActive: 0
+  isCollectingCandy: 0
   currentTime: 0
   questionMarkPrefab: {fileID: 5384806185599817607, guid: 70d6602c9caa1054096bf4203b32cd7a, type: 3}
 --- !u!50 &1561884365703912084
@@ -170,7 +171,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Actions: {fileID: -944628639613478452, guid: 36a0278d70bcddd4c9127515aa977679, type: 3}
+  m_Actions: {fileID: -944628639613478452, guid: 8dcbc9e243f152f4193ea4f2f258b1e2, type: 3}
   m_NotificationBehavior: 2
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
@@ -197,8 +198,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 1846161e-d4ed-4be5-88ee-b90150b011f7
-    m_ActionName: Player Movement/Move Up[/Keyboard/w]
+    m_ActionId: 68c3e7df-d68b-4f44-aaef-7a0e44278d13
+    m_ActionName: Player 1 Controls/Up[/Keyboard/w]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 548249377688193215}
@@ -213,8 +214,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 6bfe34fd-33e5-47bd-add1-8b844ac2ee19
-    m_ActionName: Player Movement/Move Down[/Keyboard/s]
+    m_ActionId: a9bbccd3-9c9b-4507-9379-b368179db298
+    m_ActionName: Player 1 Controls/Down[/Keyboard/s]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 548249377688193215}
@@ -229,8 +230,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 13e0bf21-1796-4a86-9bab-346a246ed69f
-    m_ActionName: Player Movement/Move Left[/Keyboard/a]
+    m_ActionId: 0401ea55-0df8-43a3-9fb8-1f8a063cc029
+    m_ActionName: Player 1 Controls/Left[/Keyboard/a]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 548249377688193215}
@@ -245,12 +246,12 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 4ff7639d-d83d-4281-a2d4-f99da763aae4
-    m_ActionName: Player Movement/Move Right[/Keyboard/d]
+    m_ActionId: e872eaa2-468d-46a3-b735-dd393a9075b8
+    m_ActionName: Player 1 Controls/Right[/Keyboard/d]
   - m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 548249377688193215}
-        m_TargetAssemblyTypeName: Costume, Assembly-CSharp
+        m_TargetAssemblyTypeName: Princess, Assembly-CSharp
         m_MethodName: UseTrick
         m_Mode: 0
         m_Arguments:
@@ -261,10 +262,90 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: cb191887-2e7d-4d4f-a454-68dcf3bd83cb
-    m_ActionName: Player Movement/Trick[/Keyboard/c]
+    m_ActionId: 5ba7384f-6923-4f3c-8dbe-71227e3751ca
+    m_ActionName: Player 1 Controls/Trick[/Keyboard/c]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 548249377688193215}
+        m_TargetAssemblyTypeName: Costume, Assembly-CSharp
+        m_MethodName: MoveUp
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: fc619ca6-8d9b-400c-b4ef-0a2de1ecf50e
+    m_ActionName: Player 2 Controls/Up[/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 548249377688193215}
+        m_TargetAssemblyTypeName: Costume, Assembly-CSharp
+        m_MethodName: MoveDown
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f7f19f1f-2e2d-4813-8bc3-c1fd209c9138
+    m_ActionName: Player 2 Controls/Down[/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 548249377688193215}
+        m_TargetAssemblyTypeName: Costume, Assembly-CSharp
+        m_MethodName: MoveLeft
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 17182fc4-508f-46ed-a049-33f53ebb6665
+    m_ActionName: Player 2 Controls/Left[/Keyboard/leftArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 548249377688193215}
+        m_TargetAssemblyTypeName: Costume, Assembly-CSharp
+        m_MethodName: MoveRight
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: a9927bd5-c3d9-4f24-ba69-d7c6a7b05aca
+    m_ActionName: Player 2 Controls/Right[/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 548249377688193215}
+        m_TargetAssemblyTypeName: Princess, Assembly-CSharp
+        m_MethodName: UseTrick
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: bd0c878c-a9cc-4dc5-8830-269e0233c084
+    m_ActionName: Player 2 Controls/Trick[/Keyboard/rightShift]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: Player Movement
+  m_DefaultActionMap: Player 1 Controls
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}

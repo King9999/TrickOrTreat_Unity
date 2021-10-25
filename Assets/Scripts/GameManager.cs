@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class GameManager : MonoBehaviour
 {
@@ -67,6 +68,10 @@ public class GameManager : MonoBehaviour
             //set candy counter
 
             //assign the correct control setup to player 2.
+            if (i == (int)PlayerManager.Player.Two)
+            {
+                PlayerManager.instance.playerList[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("Player 2 Controls");
+            }
         }
     }
 
