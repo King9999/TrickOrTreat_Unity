@@ -708,6 +708,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1259752416}
     m_Modifications:
+    - target: {fileID: 7752410009848510630, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
+      propertyPath: m_Name
+      value: Cooldown Bar P3
+      objectReference: {fileID: 0}
     - target: {fileID: 8898392980545983313, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
       propertyPath: m_Name
       value: Player Icon P3
@@ -808,6 +812,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8898392982023835103, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
+      propertyPath: m_Name
+      value: Trick Ready P3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
 --- !u!224 &836633109 stripped
@@ -835,6 +843,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &836633112 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8898392982023835101, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
+  m_PrefabInstance: {fileID: 836633108}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &836633113 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7555973424357993354, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
+  m_PrefabInstance: {fileID: 836633108}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &899888647 stripped
@@ -1380,7 +1410,16 @@ MonoBehaviour:
   - 0
   - 0
   - 0
-  trickText: {fileID: 0}
+  fillBars:
+  - {fileID: 8898392981530255583}
+  - {fileID: 1781344332}
+  - {fileID: 836633113}
+  - {fileID: 1752419384}
+  trickText:
+  - {fileID: 8898392981530255582}
+  - {fileID: 1781344331}
+  - {fileID: 836633112}
+  - {fileID: 1752419383}
 --- !u!1001 &1307421372
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1750,6 +1789,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1259752416}
     m_Modifications:
+    - target: {fileID: 7752410009848510630, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
+      propertyPath: m_Name
+      value: Cooldown Bar P4
+      objectReference: {fileID: 0}
     - target: {fileID: 8898392980545983313, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
       propertyPath: m_Name
       value: Player Icon P4
@@ -1846,6 +1889,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Data P4
       objectReference: {fileID: 0}
+    - target: {fileID: 8898392982023835103, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
+      propertyPath: m_Name
+      value: Trick Ready P4
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
 --- !u!224 &1752419380 stripped
@@ -1875,6 +1922,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1752419383 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8898392982023835101, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
+  m_PrefabInstance: {fileID: 1752419379}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1752419384 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7555973424357993354, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
+  m_PrefabInstance: {fileID: 1752419379}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1781344328
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1882,6 +1951,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1259752416}
     m_Modifications:
+    - target: {fileID: 7752410009848510630, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
+      propertyPath: m_Name
+      value: Cooldown Bar P2
+      objectReference: {fileID: 0}
     - target: {fileID: 8898392980545983313, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
       propertyPath: m_Name
       value: Player Icon P2
@@ -1978,6 +2051,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Data P2
       objectReference: {fileID: 0}
+    - target: {fileID: 8898392982023835103, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
+      propertyPath: m_Name
+      value: Trick Ready P2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
 --- !u!114 &1781344329 stripped
@@ -2000,6 +2077,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1781344331 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8898392982023835101, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
+  m_PrefabInstance: {fileID: 1781344328}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1781344332 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7555973424357993354, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
+  m_PrefabInstance: {fileID: 1781344328}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1794475972
@@ -2297,63 +2396,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1001 &4054084419656773221
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7303922824842521633, guid: d07c30ab65712be46afff7ecee3048ce, type: 3}
-      propertyPath: m_RootOrder
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303922824842521633, guid: d07c30ab65712be46afff7ecee3048ce, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -2.66
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303922824842521633, guid: d07c30ab65712be46afff7ecee3048ce, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0.28934076
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303922824842521633, guid: d07c30ab65712be46afff7ecee3048ce, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303922824842521633, guid: d07c30ab65712be46afff7ecee3048ce, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303922824842521633, guid: d07c30ab65712be46afff7ecee3048ce, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303922824842521633, guid: d07c30ab65712be46afff7ecee3048ce, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303922824842521633, guid: d07c30ab65712be46afff7ecee3048ce, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303922824842521633, guid: d07c30ab65712be46afff7ecee3048ce, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303922824842521633, guid: d07c30ab65712be46afff7ecee3048ce, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7303922824842521633, guid: d07c30ab65712be46afff7ecee3048ce, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7846927704809427713, guid: d07c30ab65712be46afff7ecee3048ce, type: 3}
-      propertyPath: m_Name
-      value: Dropped Candy
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: d07c30ab65712be46afff7ecee3048ce, type: 3}
 --- !u!1001 &6652793333810712685
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2426,6 +2468,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1259752416}
     m_Modifications:
+    - target: {fileID: 7752410009848510630, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
+      propertyPath: m_Name
+      value: Cooldown Bar P1
+      objectReference: {fileID: 0}
     - target: {fileID: 8898392980545983313, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
       propertyPath: m_Name
       value: Player Icon P1
@@ -2522,6 +2568,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player Data P1
       objectReference: {fileID: 0}
+    - target: {fileID: 8898392982023835103, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
+      propertyPath: m_Name
+      value: Trick Ready P1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
 --- !u!114 &8898392981530255580 stripped
@@ -2544,5 +2594,27 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8898392981530255582 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8898392982023835101, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
+  m_PrefabInstance: {fileID: 8898392981530255579}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8898392981530255583 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7555973424357993354, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
+  m_PrefabInstance: {fileID: 8898392981530255579}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

@@ -17,6 +17,7 @@ public class Costume : MonoBehaviour
     public float moveSpeed = 1.3f;          //scales vx and vy. Lower value = slower speed
     public float actionTimer;                //how long a trick is active for.
     public bool isTrickActive = false;
+    //public bool isTrickCharging = false;    //if true, trick is not active but isn't ready to be used again
     public bool isCollectingCandy = false;
     public float currentTime = 0;           //used to track when trick can be used again.
 
@@ -51,6 +52,11 @@ public class Costume : MonoBehaviour
     public void SetCandyAmount(short amount)
     {
         candyAmount = amount;
+    }
+
+    public bool TrickIsCharging()
+    {
+        return Time.time < currentTime + cooldown;
     }
 
     /*public virtual void UseTrick()  //to be overridden by other classes.
@@ -140,6 +146,7 @@ public class Costume : MonoBehaviour
         transform.position = new Vector3(transform.position.x + (vx * Time.deltaTime),
             transform.position.y + (vy * Time.deltaTime), PlayerZValue);
     }
+
 
     //check for collision with candy triggers
     private void OnTriggerEnter2D(Collider2D collision)

@@ -8,11 +8,17 @@ using UnityEngine.UI;
 
 public class UI : MonoBehaviour
 {
-    public TextMeshProUGUI[] playerCandyCounters = new TextMeshProUGUI[MAX_PLAYERS];
+    [Header("UI Info")]
+    public TextMeshProUGUI[] playerCandyCounters = new TextMeshProUGUI[MAX_PLAYERS];    //score
     public Image[] playerIcons = new Image[MAX_PLAYERS];
     public float[] cooldownTimers = new float[MAX_PLAYERS];
-    public TextMeshProUGUI trickText;
+    public Image[] fillBars = new Image[MAX_PLAYERS];                                   //visual cooldown when trick is used
+    public TextMeshProUGUI[] trickText = new TextMeshProUGUI[MAX_PLAYERS];              //"Trick OK" text
     //public GameObject[] playerHUD;
+
+    //cooldown bar 
+    //public float minValue, maxValue;
+    //public Image fill;
 
     public static UI instance;
 
@@ -27,19 +33,23 @@ public class UI : MonoBehaviour
 
         instance = this;
     }
-    // Start is called before the first frame update
+    
     void Start()
     {
+        //set player icon
         for (int i = 0; i < PlayerManager.instance.playerCount; i++)
         {
             playerIcons[i].sprite = PlayerManager.instance.playerList[i].GetComponent<SpriteRenderer>().sprite;
+            fillBars[i].fillAmount = 0;
         }
+
+        //fill.fillAmount = 0.5f;
     }
 
-    // Update is called once per frame
+   
     void Update()
     {
-        //UI is updated frequently.
+        //Update candy scores
         for (int i = 0; i < PlayerManager.instance.playerCount; i++)
         {
             playerCandyCounters[i].text = "x" + PlayerManager.instance.playerList[i].GetComponent<Costume>().candyAmount;

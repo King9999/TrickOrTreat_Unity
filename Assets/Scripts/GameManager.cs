@@ -77,6 +77,30 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        
+        //check cooldown timers
+        for (int i = 0; i < PlayerManager.instance.playerCount; i++)
+        {
+            Costume player = PlayerManager.instance.playerList[i].GetComponent<Costume>();
+            //float minValue = 0;
+
+            //did a player use a trick recently?
+            if (player.isTrickActive)
+            {
+                //minValue = UI.instance.cooldownTimers[i];
+                UI.instance.cooldownTimers[i] = player.currentTime + player.cooldown;
+            }
+
+            if (!player.isTrickActive && player.TrickIsCharging())
+            {
+                //show cooldown bar and update it
+                UI.instance.fillBars[i].enabled = true;
+                UI.instance.fillBars[i].fillAmount = (Time.time - player.currentTime) / (UI.instance.cooldownTimers[i] - player.currentTime);
+            }
+            else
+            {
+                //UI.instance.fillBars[i].fillAmount = 0;
+                UI.instance.fillBars[i].enabled = false;
+            }
+        }
     }
 }
