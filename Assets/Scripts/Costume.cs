@@ -19,7 +19,12 @@ public class Costume : MonoBehaviour
     public bool isTrickActive = false;
     //public bool isTrickCharging = false;    //if true, trick is not active but isn't ready to be used again
     public bool isCollectingCandy = false;
-    public float currentTime = 0;           //used to track when trick can be used again.
+
+    [Header("Timers")]
+    public float currentTime;           //used to track when trick can be used again.
+    public float currentInvulTime;      //timestamp to get current time
+    public float invulDuration = 1;     //time in seconds. Determines how long player is invincible
+    public bool isInvincible = false;
 
     //player orientation. Used to determine where to generate an action
     protected enum Direction
@@ -161,7 +166,7 @@ public class Costume : MonoBehaviour
         }
 
         //getting hit by a trick
-        if (collision.CompareTag("Trick"))
+        if (collision.CompareTag("Trick") && !isInvincible)
         {
             int candyDropped;
 
@@ -189,8 +194,32 @@ public class Costume : MonoBehaviour
             }
             //The player is knocked back away from the source of the hit
             //Player is temporalily invincible
+            //if (!isInvincible)
+            //{
+                isInvincible = true;
+                StartCoroutine(BeginInvincibility());
+            //}
             Debug.Log(name + " hit");
         }
+    }
+
+    IEnumerator BeginInvincibility()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+       
+        currentInvulTime = Time.time;
+        while (Time.time < currentInvulTime + invulDuration)
+        {
+            //player sprite visibility alternates
+            if (sr.enabled)
+                sr.enabled = false;
+            else if (!sr.enabled)
+                sr.enabled = true;
+            yield return new WaitForSeconds(0.05f);
+        }
+        
+        GetComponent<SpriteRenderer>().enabled = true;
+        isInvincible = false;
     }
 
 }
