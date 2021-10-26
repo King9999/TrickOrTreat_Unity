@@ -13,6 +13,7 @@ public class UI : MonoBehaviour
     public Image[] playerIcons = new Image[MAX_PLAYERS];
     public float[] cooldownTimers = new float[MAX_PLAYERS];
     public Image[] fillBars = new Image[MAX_PLAYERS];                                   //visual cooldown when trick is used
+    public GameObject[] playerData = new GameObject[MAX_PLAYERS];
     public TextMeshProUGUI[] trickText = new TextMeshProUGUI[MAX_PLAYERS];              //"Trick OK" text
     //public GameObject[] playerHUD;
 
@@ -36,11 +37,17 @@ public class UI : MonoBehaviour
     
     void Start()
     {
-        //set player icon
-        for (int i = 0; i < PlayerManager.instance.playerCount; i++)
+        //set player icons. Disable UI for inactive players.
+        for (int i = 0; i < MAX_PLAYERS; i++)
         {
-            playerIcons[i].sprite = PlayerManager.instance.playerList[i].GetComponent<SpriteRenderer>().sprite;
-            //fillBars[i].fillAmount = 0;
+            if (i < PlayerManager.instance.playerCount)
+            {
+                playerIcons[i].sprite = PlayerManager.instance.playerList[i].GetComponent<SpriteRenderer>().sprite;
+            }
+            else
+            {
+                playerData[i].SetActive(false);
+            }
         }
 
     }
