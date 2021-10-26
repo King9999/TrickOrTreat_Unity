@@ -40,7 +40,7 @@ public class UI : MonoBehaviour
         for (int i = 0; i < PlayerManager.instance.playerCount; i++)
         {
             playerIcons[i].sprite = PlayerManager.instance.playerList[i].GetComponent<SpriteRenderer>().sprite;
-            fillBars[i].fillAmount = 0;
+            //fillBars[i].fillAmount = 0;
         }
 
     }
@@ -70,7 +70,7 @@ public class UI : MonoBehaviour
                 //show cooldown bar and update it. Must subtract player.currentTime (which acts as the minimum value) on both sides for accurate reading of bar.
                 fillBars[i].enabled = true;
                 trickText[i].alpha = 0.3f;
-                fillBars[i].fillAmount = (Time.time - player.currentTime) / (UI.instance.cooldownTimers[i] - player.currentTime);
+                fillBars[i].fillAmount = (Time.time - player.currentTime) / (cooldownTimers[i] - player.currentTime);
             }
             else
             {

@@ -30,7 +30,7 @@ public class Magic : MonoBehaviour
             Witch.instance.magicVy = 0;
 
             //cooldown activation
-            Witch.instance.currentTime = Time.time;
+            //Witch.instance.currentTime = Time.time;
             Witch.instance.isTrickActive = false;
         }
 
@@ -45,7 +45,7 @@ public class Magic : MonoBehaviour
             Witch.instance.magicVy = 0;
 
             //cooldown activation
-            Witch.instance.currentTime = Time.time;
+            //Witch.instance.currentTime = Time.time;
             Witch.instance.isTrickActive = false;
         }
     }

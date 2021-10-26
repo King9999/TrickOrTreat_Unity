@@ -64,6 +64,7 @@ public class Witch : Costume
             }
         }*/
 
+
     }
 
     public override void UseTrick(InputAction.CallbackContext context)
@@ -74,7 +75,7 @@ public class Witch : Costume
             {
                 isTrickActive = true;
                 cooldown = initCooldown;
-                //currentTime = Time.time;
+                currentTime = Time.time;
 
                 //magic attack is generated at different locations depending on direction.
                 switch (direction)

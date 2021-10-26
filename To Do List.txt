@@ -8,4 +8,5 @@ TO DO LIST FOR TRICK OR TREAT
 -Prevent candy from continuously being taken from house even when player is away from it. *FIXED*
 -Figure out how to get at least two gamepads to work
 -Re-make the input system and have separate schemes for each player. I believe this is how to solve the issue with assigning inputs to more than one player. Make 4 schemes, even if I don't use all of them. *FIXED*
--Adjust Knight's sword hitbox so it doesn't hit the Knight himself.
+-Adjust Knight's sword hitbox so it doesn't hit the Knight himself. *FIXED*
+-Fix Witch's cooldown bar not appearing. *FIXED*
