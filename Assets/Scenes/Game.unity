@@ -406,6 +406,8 @@ MonoBehaviour:
   - {fileID: 4825401}
   - {fileID: 418922911}
   - {fileID: 1448526517}
+  candyList: []
+  candyPrefab: {fileID: 7846927704809427713, guid: d07c30ab65712be46afff7ecee3048ce, type: 3}
 --- !u!4 &365094775
 Transform:
   m_ObjectHideFlags: 0

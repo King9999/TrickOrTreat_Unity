@@ -156,12 +156,39 @@ public class Costume : MonoBehaviour
         {
             candyAmount += 1;
             Destroy(collision.gameObject);
+            //TODO: Clear the object references in the candy list, then trim the list.
             Debug.Log(name + " picked up Candy");
         }
 
         //getting hit by a trick
         if (collision.CompareTag("Trick"))
         {
+            int candyDropped;
+
+            //if the trick was the ghost's, double the amount of candy dropped
+            if (collision.name == "Trick_Boo(Clone)")
+            {
+                candyDropped = candyAmount < dropAmount * 2 ? candyAmount : dropAmount * 2;
+            }
+            else
+            {
+                candyDropped = candyAmount < dropAmount ? candyAmount : dropAmount;
+            }
+                
+
+            candyAmount -= candyDropped;
+            
+            //candy spills out in random directions.
+            for (int i = 0; i < candyDropped; i++)
+            {
+                float randX = Random.Range(0.1f, 1f);
+                float randY = Random.Range(0.1f, 1f);
+                float candyZValue = -2;
+                GameObject candy = Instantiate(GameManager.instance.candyPrefab, new Vector3(transform.position.x + randX, transform.position.y + randY, candyZValue), Quaternion.identity);
+                GameManager.instance.candyList.Add(candy);
+            }
+            //The player is knocked back away from the source of the hit
+            //Player is temporalily invincible
             Debug.Log(name + " hit");
         }
     }

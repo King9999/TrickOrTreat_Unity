@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     //public Costume[] playerList = new Costume[MAX_PLAYERS];           //reference to active players. Four players maximum, 2 players minimum. Player 1 is index 0.
     //public int playerCount;                                         //number of active players
     public GameObject[] spawnPoints = new GameObject[MAX_PLAYERS];   //players begin at one of these points at random
+    public List<GameObject> candyList = new List<GameObject>();     //contains dropped candy
+    public GameObject candyPrefab;
 
     public enum CostumeType
     {
