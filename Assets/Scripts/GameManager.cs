@@ -9,6 +9,7 @@ public class GameManager : MonoBehaviour
     //public Costume[] playerList = new Costume[MAX_PLAYERS];           //reference to active players. Four players maximum, 2 players minimum. Player 1 is index 0.
     //public int playerCount;                                         //number of active players
     public GameObject[] spawnPoints = new GameObject[MAX_PLAYERS];   //players begin at one of these points at random
+    bool[] spawnPointTaken = new bool[MAX_PLAYERS];
     public List<GameObject> candyList = new List<GameObject>();     //contains dropped candy
     public GameObject candyPrefab;
 
@@ -39,14 +40,12 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //get player info and have them start at a random spawn point
-        //PlayerManager.instance.playerList[(int)PlayerManager.Player.One].transform.position = Vector3.zero;
         for (int i = 0; i < PlayerManager.instance.playerCount; i++)
         {
             switch(PlayerManager.instance.selectedCostumes[i])
             {
                 case PlayerManager.CostumeType.Ghost:
                     PlayerManager.instance.playerList[i] = Instantiate(PlayerManager.instance.ghostPrefab);
-                    //setup player icon here
                     break;
 
                 case PlayerManager.CostumeType.Knight:
@@ -62,13 +61,31 @@ public class GameManager : MonoBehaviour
                     break;
             }
 
-            //set player's costume in UI
-            //PlayerManager.instance.playerList[(int)PlayerManager.instance.currentPlayer]
-            //for (int i = 0; i < PlayerManager.instance.playerCount; i++)
-            //{
-                //UI.instance.playerIcons[i].sprite = PlayerManager.instance.playerList[i].GetComponent<SpriteRenderer>().sprite;
-            //}
-            //set candy counter
+            //choose a random spawn point
+            int randomPoint = Random.Range(0, spawnPoints.Length);
+            if (spawnPointTaken[randomPoint] == false)
+            {
+                PlayerManager.instance.playerList[i].transform.position = spawnPoints[randomPoint].transform.position;
+                spawnPointTaken[randomPoint] = true;
+            }
+            else
+            {
+                //find an open spawn point
+                int j = 0;
+                while (j < spawnPoints.Length)
+                {
+                    if(spawnPointTaken[j] == false)
+                    {
+                        PlayerManager.instance.playerList[i].transform.position = spawnPoints[j].transform.position;
+                        spawnPointTaken[j] = true;
+                        break; 
+                    }
+                    else
+                    {
+                        j++;
+                    }
+                }
+            }
 
             //assign the correct control setup to player 2.
             if (i == (int)PlayerManager.Player.Two)

@@ -11,3 +11,4 @@ TO DO LIST FOR TRICK OR TREAT
 -Adjust Knight's sword hitbox so it doesn't hit the Knight himself. *FIXED*
 -Fix Witch's cooldown bar not appearing. *FIXED*
 -Add a stun or knockback when player is hit with a trick. *FIXED*
+-On character select, when player selects a costume, there should be an "OK!" prompt to let player know it was selected.
