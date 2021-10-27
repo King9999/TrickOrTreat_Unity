@@ -128,11 +128,11 @@ MonoBehaviour:
   candyAmount: 0
   cooldown: 0
   initCooldown: 0
-  dropAmount: 0
-  candyTaken: 0
+  dropAmount: 5
+  candyTaken: 1
   vx: 0
   vy: 0
-  moveSpeed: 0
+  moveSpeed: 1.3
   actionTimer: 0
   isTrickActive: 0
   isCollectingCandy: 0

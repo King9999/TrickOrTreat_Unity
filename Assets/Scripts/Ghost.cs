@@ -17,7 +17,7 @@ public class Ghost : Costume
         //cooldown = 0;
         initCooldown = 10;
         actionTimer = 0.5f;
-        candyTaken = 1;
+        //candyTaken = 1;
         dropAmount = 5;
         moveSpeed = 1.3f;
     }
