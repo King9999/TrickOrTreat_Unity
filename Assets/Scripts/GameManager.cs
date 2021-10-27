@@ -20,8 +20,9 @@ public class GameManager : MonoBehaviour
     
 
     //consts
-    public float ScreenBoundaryX { get; } = 10.24f;                 //calculated by dividing screen width by PPU (100).
-    public float ScreenBoundaryY { get; } = 7.68f;                 //calculated by dividing screen height by PPU (100). The height is actually higher but a portion of it is for UI.
+    public float ScreenBoundaryX { get; } = 10f;                 //calculated by dividing screen width by PPU (100).
+    public float ScreenBoundaryY { get; } = 7f;                 //calculated by dividing screen height by PPU (100). The height is actually higher but a portion of it is for UI.
+    public float yOffset { get; } = 0.68f;                             //used for offscreen checking when players move to bottom of screen, or magic goes offscreen.
     const int MAX_PLAYERS = 4;
 
     private void Awake()
@@ -79,30 +80,40 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        //check cooldown timers
-        /*for (int i = 0; i < PlayerManager.instance.playerCount; i++)
+        /*****OFFSCREEN CHECK****/
+        Vector3 screenPos = Camera.main.WorldToViewportPoint(transform.position);
+
+        for (int i = 0; i < PlayerManager.instance.playerCount; i++)
         {
-            Costume player = PlayerManager.instance.playerList[i].GetComponent<Costume>();
-            //float minValue = 0;
+            GameObject player = PlayerManager.instance.playerList[i];
 
-            //did a player use a trick recently?
-            if (player.isTrickActive)
+            //left edge
+            if (player.transform.position.x < screenPos.x * -ScreenBoundaryX)
             {
-                //minValue = UI.instance.cooldownTimers[i];
-                UI.instance.cooldownTimers[i] = player.currentTime + player.cooldown;
+                player.transform.position = new Vector3(screenPos.x * -ScreenBoundaryX, player.transform.position.y, player.transform.position.z);
+                Debug.Log(player.name + " Hit the left boundary");
             }
 
-            if (!player.isTrickActive && player.TrickIsCharging())
+            //right edge
+            if (player.transform.position.x > screenPos.x * ScreenBoundaryX)
             {
-                //show cooldown bar and update it. Must subtract player.currentTime (which acts as the minimum value) on both sides for accurate reading of bar.
-                UI.instance.fillBars[i].enabled = true;
-                UI.instance.fillBars[i].fillAmount = (Time.time - player.currentTime) / (UI.instance.cooldownTimers[i] - player.currentTime);
+                player.transform.position = new Vector3(screenPos.x * ScreenBoundaryX, player.transform.position.y, player.transform.position.z);
+                Debug.Log(player.name + "Hit the right boundary");
             }
-            else
+
+            //top edge. Player can't move into UI space
+            if (player.transform.position.y > screenPos.y * ScreenBoundaryY)
             {
-                //UI.instance.fillBars[i].fillAmount = 0;
-                UI.instance.fillBars[i].enabled = false;
+                player.transform.position = new Vector3(player.transform.position.x, screenPos.y * ScreenBoundaryY, player.transform.position.z);
+                Debug.Log(player.name + "Hit the top boundary");
             }
-        }*/
+
+            //bottom edge
+            if (player.transform.position.y < screenPos.y * -ScreenBoundaryY - yOffset)
+            {
+                player.transform.position = new Vector3(player.transform.position.x, screenPos.y * -ScreenBoundaryY - yOffset, player.transform.position.z);
+                Debug.Log(player.name + "Hit the bottom boundary");
+            }
+        }
     }
 }

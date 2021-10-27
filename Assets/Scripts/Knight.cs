@@ -18,8 +18,8 @@ public class Knight : Costume
         name = "Knight";
         initCooldown = 0.3f;
         dropAmount = 2;
-        candyTaken = 1;
         moveSpeed = 1f;
+        candyTaken = 1;
         actionTimer = 0.2f;
     }
 

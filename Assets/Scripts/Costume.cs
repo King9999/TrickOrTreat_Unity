@@ -11,8 +11,8 @@ public class Costume : MonoBehaviour
     public int candyAmount;
     public float cooldown;              //time in seconds before trick is recharged. Starts at zero so that trick can be used immediately at game start
     public float initCooldown;          //cooldown of each trick.
-    public int dropAmount;              //how much candy the player drops when hit. 5 is the default.
-    public int candyTaken;              //how much candy the player gets from a house per tick
+    public int dropAmount = 5;              //how much candy the player drops when hit. 5 is the default.
+    public int candyTaken = 1;              //how much candy the player gets from a house per tick
     public float vx, vy;
     public float moveSpeed;                  //scales vx and vy. Lower value = slower speed
     public float actionTimer;                //how long a trick is active for.

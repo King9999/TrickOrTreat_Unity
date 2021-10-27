@@ -22,7 +22,7 @@ public class Magic : MonoBehaviour
         //check if offscreen.
         Vector3 screenPos = Camera.main.WorldToViewportPoint(GameManager.instance.transform.position);
         if (transform.position.x > screenPos.x * GameManager.instance.ScreenBoundaryX || transform.position.x < screenPos.x * -GameManager.instance.ScreenBoundaryX
-            || transform.position.y > screenPos.y * GameManager.instance.ScreenBoundaryY || transform.position.y < screenPos.y * -GameManager.instance.ScreenBoundaryY)
+            || transform.position.y > screenPos.y * GameManager.instance.ScreenBoundaryY || transform.position.y < screenPos.y * -GameManager.instance.ScreenBoundaryY - GameManager.instance.yOffset)
         {
             Debug.Log("Magic offscreen at " + transform.position);
             Destroy(gameObject);
