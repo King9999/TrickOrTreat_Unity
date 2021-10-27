@@ -8,13 +8,13 @@ using UnityEngine.InputSystem;
 public class Costume : MonoBehaviour
 {
     public new string name;
-    public int candyAmount = 0;
-    public float cooldown = 0;              //time in seconds before trick is recharged. Starts at zero so that trick can be used immediately at game start
-    public float initCooldown;              //cooldown of each trick.
-    public int dropAmount = 5;              //how much candy the player drops when hit. 5 is the default.
-    public int candyTaken = 1;              //how much candy the player gets from a house per tick
-    public float vx, vy = 0;
-    public float moveSpeed = 1.3f;          //scales vx and vy. Lower value = slower speed
+    public int candyAmount;
+    public float cooldown;              //time in seconds before trick is recharged. Starts at zero so that trick can be used immediately at game start
+    public float initCooldown;          //cooldown of each trick.
+    public int dropAmount;              //how much candy the player drops when hit. 5 is the default.
+    public int candyTaken;              //how much candy the player gets from a house per tick
+    public float vx, vy;
+    public float moveSpeed;                  //scales vx and vy. Lower value = slower speed
     public float actionTimer;                //how long a trick is active for.
     public bool isTrickActive = false;
     //public bool isTrickCharging = false;    //if true, trick is not active but isn't ready to be used again
@@ -23,8 +23,11 @@ public class Costume : MonoBehaviour
     [Header("Timers")]
     public float currentTime;           //used to track when trick can be used again.
     public float currentInvulTime;      //timestamp to get current time
-    public float invulDuration = 1;     //time in seconds. Determines how long player is invincible
+    public float invulDuration = 1.5f;         //time in seconds. Determines how long player is invincible
     public bool isInvincible = false;
+    public float currentStunTime;
+    public float stunDuration = 1f;          //time in seconds. Player can't move during this time
+    public bool isStunned = false;
 
     //player orientation. Used to determine where to generate an action
     protected enum Direction
@@ -141,7 +144,7 @@ public class Costume : MonoBehaviour
             currentTime = Time.time;
         }*/
         //else
-            //play a sound or show a graphic to indicate trick can't be used yet.
+        //play a sound or show a graphic to indicate trick can't be used yet.
     }
     #endregion
 
@@ -157,7 +160,7 @@ public class Costume : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //picking up dropped candy
-        if(collision.CompareTag("Candy"))
+        if (collision.CompareTag("Candy"))
         {
             candyAmount += 1;
             Destroy(collision.gameObject);
@@ -166,7 +169,7 @@ public class Costume : MonoBehaviour
         }
 
         //getting hit by a trick
-        if (collision.CompareTag("Trick") && !isInvincible)
+        if (collision.CompareTag("Trick") && !isInvincible && !isStunned)
         {
             int candyDropped;
 
@@ -179,10 +182,10 @@ public class Costume : MonoBehaviour
             {
                 candyDropped = candyAmount < dropAmount ? candyAmount : dropAmount;
             }
-                
+
 
             candyAmount -= candyDropped;
-            
+
             //candy spills out in random directions.
             for (int i = 0; i < candyDropped; i++)
             {
@@ -192,13 +195,11 @@ public class Costume : MonoBehaviour
                 GameObject candy = Instantiate(GameManager.instance.candyPrefab, new Vector3(transform.position.x + randX, transform.position.y + randY, candyZValue), Quaternion.identity);
                 GameManager.instance.candyList.Add(candy);
             }
-            //The player is knocked back away from the source of the hit
-            //Player is temporalily invincible
-            //if (!isInvincible)
-            //{
-                isInvincible = true;
-                StartCoroutine(BeginInvincibility());
-            //}
+
+            //The player is stunned for a duration
+            isStunned = true;
+            StartCoroutine(Stun());
+
             Debug.Log(name + " hit");
         }
     }
@@ -206,7 +207,7 @@ public class Costume : MonoBehaviour
     IEnumerator BeginInvincibility()
     {
         SpriteRenderer sr = GetComponent<SpriteRenderer>();
-       
+
         currentInvulTime = Time.time;
         while (Time.time < currentInvulTime + invulDuration)
         {
@@ -217,9 +218,33 @@ public class Costume : MonoBehaviour
                 sr.enabled = true;
             yield return new WaitForSeconds(0.05f);
         }
-        
+
         GetComponent<SpriteRenderer>().enabled = true;
         isInvincible = false;
     }
 
+    IEnumerator Stun()
+    {
+        currentStunTime = Time.time;
+        Vector3 originalPos = transform.position;
+        float yMod = 0.1f;
+        while (Time.time < currentStunTime + stunDuration)
+        {
+            //player remains in place and shakes for a duration
+            vx = 0;
+            vy = 0;           
+            transform.position = new Vector3(transform.position.x, transform.position.y + yMod, transform.position.z);
+            yMod *= -1;
+            yield return new WaitForSeconds(0.05f);
+        }
+
+        //place player back to their original spot
+        transform.position = originalPos;
+
+        //player can now move again and they're invincible for a duration
+        isStunned = false;
+        isInvincible = true;
+        StartCoroutine(BeginInvincibility());
+
+    }
 }

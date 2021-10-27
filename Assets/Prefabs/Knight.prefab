@@ -124,19 +124,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04f222206cf48064d8cafd24d4a8b999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Knight
+  name: 
   candyAmount: 0
   cooldown: 0
   initCooldown: 0
-  dropAmount: 5
-  candyTaken: 1
+  dropAmount: 0
+  candyTaken: 0
   vx: 0
   vy: 0
-  moveSpeed: 1
+  moveSpeed: 0
   actionTimer: 0
   isTrickActive: 0
   isCollectingCandy: 0
   currentTime: 0
+  currentInvulTime: 0
+  invulDuration: 1.5
+  isInvincible: 0
+  currentStunTime: 0
+  stunDuration: 1
+  isStunned: 0
   swordPrefab: {fileID: 8043817667779353952, guid: ce3f228978bf18c45a2095fda99e9c7c, type: 3}
 --- !u!114 &595175002959594364
 MonoBehaviour:

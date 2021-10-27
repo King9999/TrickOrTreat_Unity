@@ -128,15 +128,21 @@ MonoBehaviour:
   candyAmount: 0
   cooldown: 0
   initCooldown: 0
-  dropAmount: 5
-  candyTaken: 1
+  dropAmount: 0
+  candyTaken: 0
   vx: 0
   vy: 0
-  moveSpeed: 1
+  moveSpeed: 0
   actionTimer: 0
   isTrickActive: 0
   isCollectingCandy: 0
   currentTime: 0
+  currentInvulTime: 0
+  invulDuration: 1.5
+  isInvincible: 0
+  currentStunTime: 0
+  stunDuration: 1
+  isStunned: 0
   questionMarkPrefab: {fileID: 5384806185599817607, guid: 70d6602c9caa1054096bf4203b32cd7a, type: 3}
 --- !u!50 &1561884365703912084
 Rigidbody2D:

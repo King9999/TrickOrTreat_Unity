@@ -10,3 +10,4 @@ TO DO LIST FOR TRICK OR TREAT
 -Re-make the input system and have separate schemes for each player. I believe this is how to solve the issue with assigning inputs to more than one player. Make 4 schemes, even if I don't use all of them. *FIXED*
 -Adjust Knight's sword hitbox so it doesn't hit the Knight himself. *FIXED*
 -Fix Witch's cooldown bar not appearing. *FIXED*
+-Add a stun or knockback when player is hit with a trick. *FIXED*

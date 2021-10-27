@@ -103,15 +103,21 @@ MonoBehaviour:
   candyAmount: 0
   cooldown: 0
   initCooldown: 0
-  dropAmount: 5
-  candyTaken: 1
+  dropAmount: 0
+  candyTaken: 0
   vx: 0
   vy: 0
-  moveSpeed: 1.3
-  actionTimer: 2
+  moveSpeed: 0
+  actionTimer: 0
   isTrickActive: 0
   isCollectingCandy: 0
   currentTime: 0
+  currentInvulTime: 0
+  invulDuration: 1.5
+  isInvincible: 0
+  currentStunTime: 0
+  stunDuration: 1
+  isStunned: 0
   booPrefab: {fileID: 5593432186595118667, guid: 2560c9ada1b49054f8af523eb7a186d2, type: 3}
 --- !u!61 &3042937695570437422
 BoxCollider2D:
