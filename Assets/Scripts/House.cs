@@ -26,6 +26,8 @@ public class House : MonoBehaviour
     bool isOnTrigger;                       //prevents trick or treat bubble from appearing more than once
     int candyTaken;                     //value varies depending on amount of candy remaining in house. This is really only for the princess.
 
+    SpriteRenderer houseSr;
+
     //consts
     public float MaxCandyChance { get; } = 0.04f;  //4% chance
     public float HiddenCandyChance { get; } = 0.1f; //10% chance. If sucessful, the amount of candy a house has is hidden until player approaches house
@@ -47,6 +49,7 @@ public class House : MonoBehaviour
         trickOrTreatList = new List<GameObject>();
         bubbleTimerList = new List<float>();
         isOnTrigger = false;
+        houseSr = GetComponent<SpriteRenderer>();
     }
 
     //fill a house with candy.
@@ -69,7 +72,7 @@ public class House : MonoBehaviour
         candyAmountIsHidden = randNum <= HiddenCandyChance;
 
         //turn the lights on
-        GetComponent<SpriteRenderer>().sprite = houseLightsOn;
+        houseSr.sprite = houseLightsOn;
 
     }
 
@@ -111,7 +114,7 @@ public class House : MonoBehaviour
                 candyBeingCollected = false;
 
                 //lights out!
-                GetComponent<SpriteRenderer>().sprite = houseLightsOff;
+                houseSr.sprite = houseLightsOff;
                 HouseManager.instance.housesWithCandy--;
             }
         }

@@ -406,6 +406,7 @@ MonoBehaviour:
   candyPickupList: []
   trickOrTreatPrefab: {fileID: 6745256834740562971, guid: 05cfeedc74481a54da37cb2cc965944f, type: 3}
   trickOrTreatList: []
+  bubbleTimerList: []
 --- !u!114 &5801896523383393475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,7 +454,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6652793335821659063}
-  m_BodyType: 0
+  m_BodyType: 2
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0

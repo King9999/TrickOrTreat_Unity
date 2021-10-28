@@ -21,13 +21,19 @@ public class Costume : MonoBehaviour
     public bool isCollectingCandy = false;
 
     [Header("Timers")]
-    public float currentTime;           //used to track when trick can be used again.
-    public float currentInvulTime;      //timestamp to get current time
+    public float currentTime;                   //used to track when trick can be used again.
+    public float currentInvulTime;              //timestamp to get current time
     public float invulDuration = 1.5f;         //time in seconds. Determines how long player is invincible
     public bool isInvincible = false;
     public float currentStunTime;
     public float stunDuration = 1f;          //time in seconds. Player can't move during this time
     public bool isStunned = false;
+    
+    [Header("AI")]
+    public bool isAI;                       //if true, AI controls all other costumes not controlled by players.
+    public House houseWithMostCandy;
+    public House houseWithShortestDistance;
+
 
     //player orientation. Used to determine where to generate an action
     protected enum Direction
@@ -135,6 +141,92 @@ public class Costume : MonoBehaviour
             vx = 0;
         }
     }
+
+    #region AI Actions 
+
+    public void MoveToLocation(Vector2 position)
+    {
+        //AI player moves to given location. NOTE: Will likely have to do some raycasting to avoid obstacles
+        if (position.x > transform.position.x)
+        {
+            vx = moveSpeed;
+        }
+        else if (position.x < transform.position.x)
+        {
+            vx = -moveSpeed;
+        }
+
+        if (position.y > transform.position.y)
+        {
+            vy = moveSpeed;
+        }
+
+        if (position.y < transform.position.y)
+        {
+            vy = -moveSpeed;
+        }
+    
+        /*else
+        {
+            vx = 0;
+            vy = 0;
+        }*/
+    }
+
+    public void SeekPlayer()
+    {
+        //approach player if they're within the detector's range
+    }
+
+    public void SearchHouses()
+    {
+        /*check all houses with candy and:
+         * 1. find one with the most candy, or
+         * 2. find the nearest house
+         * AI will choose randomly between the two (60/40?)
+         * if AI finds a house with an unknown amount, 20% chance it approaches the house, otherwise it'll be treated as having no candy.*/
+
+        float shortestDistance = 0;
+        float mostCandy = 0;
+        //House houseWithMostCandy;
+        //House houseWithShortestDistance;
+        for (int i = 0; i < HouseManager.instance.houses.Length; i++)
+        {
+            //get the distance of each house, and get the nearest house and the one with the most candy.
+            float distanceToHouse = Vector2.Distance(transform.position, HouseManager.instance.houses[i].transform.position);
+            if (distanceToHouse < shortestDistance)
+            {
+                shortestDistance = distanceToHouse;
+                houseWithShortestDistance = HouseManager.instance.houses[i];
+            }
+
+            if(HouseManager.instance.houses[i].candyAmount > mostCandy)
+            {
+                houseWithMostCandy = HouseManager.instance.houses[i];
+                mostCandy = HouseManager.instance.houses[i].candyAmount;
+            }
+        }
+
+        Debug.Log("House with most candy is " + houseWithMostCandy.name);
+        Debug.Log("Closest house is " + houseWithShortestDistance.name);
+
+        //roll to decide which house AI goes for
+        float randNum = Random.Range(0f, 1f);
+
+        if (randNum <= 0.3f)
+        {
+            //go for house with shortest distance
+            MoveToLocation(houseWithShortestDistance.transform.position);
+        }
+        else
+        {
+            //go for house with most candy
+            MoveToLocation(houseWithMostCandy.transform.position);
+        }
+    }
+
+
+    #endregion
 
     public virtual void UseTrick(InputAction.CallbackContext context)
     {

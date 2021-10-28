@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3618069159143559771}
   - component: {fileID: 478442726458081794}
   - component: {fileID: 7996971179877166053}
+  - component: {fileID: -5815329140948443625}
   m_Layer: 0
   m_Name: Trick_Magic
   m_TagString: Trick
@@ -112,3 +113,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f049b8935f6ab74d894be75c5e131c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isActive: 0
+--- !u!50 &-5815329140948443625
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7463258559015588500}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 6
