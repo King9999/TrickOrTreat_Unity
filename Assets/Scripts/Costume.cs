@@ -31,8 +31,9 @@ public class Costume : MonoBehaviour
     
     [Header("AI")]
     public bool isAI;                       //if true, AI controls all other costumes not controlled by players.
-    public House houseWithMostCandy;
-    public House houseWithShortestDistance;
+    public bool locationSet;                //when true, AI's location does not change until they reach their destination or something causes the location to no longer be valid.
+    //House houseWithMostCandy;
+    //House houseWithShortestDistance;
 
 
     //player orientation. Used to determine where to generate an action
@@ -144,24 +145,25 @@ public class Costume : MonoBehaviour
 
     #region AI Actions 
 
-    public void MoveToLocation(Vector2 position)
+    public void MoveToLocation(Vector3 destination)
     {
         //AI player moves to given location. NOTE: Will likely have to do some raycasting to avoid obstacles
-        if (position.x > transform.position.x)
+        //float posDiffX = transform.position.x - destination.x;
+        if (destination.x > transform.position.x)
         {
             vx = moveSpeed;
         }
-        else if (position.x < transform.position.x)
+        else if (destination.x < transform.position.x)
         {
             vx = -moveSpeed;
         }
 
-        if (position.y > transform.position.y)
+        if (destination.y > transform.position.y)
         {
             vy = moveSpeed;
         }
 
-        if (position.y < transform.position.y)
+        if (destination.y < transform.position.y)
         {
             vy = -moveSpeed;
         }
@@ -183,45 +185,55 @@ public class Costume : MonoBehaviour
         /*check all houses with candy and:
          * 1. find one with the most candy, or
          * 2. find the nearest house
-         * AI will choose randomly between the two (60/40?)
+         * AI will choose randomly between the two (70/30?)
          * if AI finds a house with an unknown amount, 20% chance it approaches the house, otherwise it'll be treated as having no candy.*/
 
         float shortestDistance = 0;
         float mostCandy = 0;
-        //House houseWithMostCandy;
-        //House houseWithShortestDistance;
-        for (int i = 0; i < HouseManager.instance.houses.Length; i++)
+        House houseWithMostCandy = HouseManager.instance.houses[6];
+        House houseWithShortestDistance = HouseManager.instance.houses[6];
+        /*for (int i = 0; i < HouseManager.instance.houses.Length; i++)
         {
             //get the distance of each house, and get the nearest house and the one with the most candy.
-            float distanceToHouse = Vector2.Distance(transform.position, HouseManager.instance.houses[i].transform.position);
-            if (distanceToHouse < shortestDistance)
+            if (HouseManager.instance.houses[i].HasCandy())
             {
-                shortestDistance = distanceToHouse;
-                houseWithShortestDistance = HouseManager.instance.houses[i];
-            }
+                float distanceToHouse = Vector3.Distance(transform.position, HouseManager.instance.houses[i].transform.position);
+                if (distanceToHouse < shortestDistance)
+                {
+                    shortestDistance = distanceToHouse;
+                    houseWithShortestDistance = HouseManager.instance.houses[i];
+                }
 
-            if(HouseManager.instance.houses[i].candyAmount > mostCandy)
-            {
-                houseWithMostCandy = HouseManager.instance.houses[i];
-                mostCandy = HouseManager.instance.houses[i].candyAmount;
+                if (HouseManager.instance.houses[i].candyAmount > mostCandy)
+                {
+                    houseWithMostCandy = HouseManager.instance.houses[i];
+                    mostCandy = HouseManager.instance.houses[i].candyAmount;
+                }
             }
-        }
+        }*/
 
         Debug.Log("House with most candy is " + houseWithMostCandy.name);
         Debug.Log("Closest house is " + houseWithShortestDistance.name);
 
         //roll to decide which house AI goes for
-        float randNum = Random.Range(0f, 1f);
+        if (!locationSet)
+        {
+            float randNum = Random.Range(0f, 1f);
 
-        if (randNum <= 0.3f)
-        {
-            //go for house with shortest distance
-            MoveToLocation(houseWithShortestDistance.transform.position);
-        }
-        else
-        {
-            //go for house with most candy
-            MoveToLocation(houseWithMostCandy.transform.position);
+            if (randNum <= 0.3f)
+            {
+                //go for house with shortest distance
+                MoveToLocation(houseWithShortestDistance.transform.position /*+ houseWithShortestDistance.triggerLocation*/);
+                Debug.Log("Closest house pos is " + houseWithShortestDistance.transform.position);
+            }
+            else
+            {
+                //go for house with most candy
+                MoveToLocation(houseWithMostCandy.transform.position /*+ houseWithMostCandy.triggerLocation*/);
+                Debug.Log("House with most candy's pos is " + houseWithMostCandy.transform.position);
+            }
+
+            locationSet = true;
         }
     }
 

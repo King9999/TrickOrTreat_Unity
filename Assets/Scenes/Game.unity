@@ -164,10 +164,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text_CandyCounter9
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335143810088, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: m_Name
+      value: CandyTrigger 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: candyUI
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: triggerLocation
+      value: 
+      objectReference: {fileID: 24626946}
     - target: {fileID: 6652793335821659058, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_RootOrder
       value: 13
@@ -218,10 +226,15 @@ PrefabInstance:
       objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6652793335821659063, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_Name
-      value: House (9)
+      value: House 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+--- !u!4 &24626946 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6652793335143810091, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+  m_PrefabInstance: {fileID: 24626945}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &34694212
 GameObject:
   m_ObjectHideFlags: 0
@@ -270,10 +283,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text_CandyCounter3
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335143810088, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: m_Name
+      value: CandyTrigger 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: candyUI
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: triggerLocation
+      value: 
+      objectReference: {fileID: 43331568}
     - target: {fileID: 6652793335821659058, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -324,10 +345,15 @@ PrefabInstance:
       objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6652793335821659063, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_Name
-      value: House (3)
+      value: House 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+--- !u!4 &43331568 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6652793335143810091, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+  m_PrefabInstance: {fileID: 43331567}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &125486831 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
@@ -896,10 +922,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text_CandyCounter8
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335143810088, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: m_Name
+      value: CandyTrigger 9
+      objectReference: {fileID: 0}
     - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: candyUI
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: triggerLocation
+      value: 
+      objectReference: {fileID: 913334507}
     - target: {fileID: 6652793335821659058, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_RootOrder
       value: 12
@@ -950,10 +984,15 @@ PrefabInstance:
       objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6652793335821659063, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_Name
-      value: House (8)
+      value: House 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+--- !u!4 &913334507 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6652793335143810091, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+  m_PrefabInstance: {fileID: 913334506}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &930452048
 GameObject:
   m_ObjectHideFlags: 0
@@ -1137,10 +1176,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text_CandyCounter2
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335143810088, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: m_Name
+      value: CandyTrigger 3
+      objectReference: {fileID: 0}
     - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: candyUI
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: triggerLocation
+      value: 
+      objectReference: {fileID: 1187831233}
     - target: {fileID: 6652793335821659058, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -1191,10 +1238,15 @@ PrefabInstance:
       objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6652793335821659063, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_Name
-      value: House (2)
+      value: House 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+--- !u!4 &1187831233 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6652793335143810091, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+  m_PrefabInstance: {fileID: 1187831232}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &1221496582 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8898392981592055036, guid: 051870dbeb5582a408c5bf81e1ae4eb3, type: 3}
@@ -1211,10 +1263,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text_CandyCounter7
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335143810088, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: m_Name
+      value: CandyTrigger 8
+      objectReference: {fileID: 0}
     - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: candyUI
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: triggerLocation
+      value: 
+      objectReference: {fileID: 1221875664}
     - target: {fileID: 6652793335821659058, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_RootOrder
       value: 11
@@ -1265,10 +1325,15 @@ PrefabInstance:
       objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6652793335821659063, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_Name
-      value: House (7)
+      value: House 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+--- !u!4 &1221875664 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6652793335143810091, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+  m_PrefabInstance: {fileID: 1221875663}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1259752411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1443,10 +1508,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text_CandyCounter5
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335143810088, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: m_Name
+      value: CandyTrigger 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: candyUI
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: triggerLocation
+      value: 
+      objectReference: {fileID: 1307421373}
     - target: {fileID: 6652793335821659058, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1497,10 +1570,15 @@ PrefabInstance:
       objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6652793335821659063, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_Name
-      value: House (5)
+      value: House 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+--- !u!4 &1307421373 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6652793335143810091, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+  m_PrefabInstance: {fileID: 1307421372}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1396306878 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
@@ -2134,10 +2212,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text_CandyCounter4
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335143810088, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: m_Name
+      value: CandyTrigger 5
+      objectReference: {fileID: 0}
     - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: candyUI
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: triggerLocation
+      value: 
+      objectReference: {fileID: 1794475973}
     - target: {fileID: 6652793335821659058, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_RootOrder
       value: 8
@@ -2188,10 +2274,15 @@ PrefabInstance:
       objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6652793335821659063, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_Name
-      value: House (4)
+      value: House 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+--- !u!4 &1794475973 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6652793335143810091, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+  m_PrefabInstance: {fileID: 1794475972}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1876204086
 GameObject:
   m_ObjectHideFlags: 0
@@ -2244,10 +2335,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text_CandyCounter1
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335143810088, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: m_Name
+      value: CandyTrigger 2
+      objectReference: {fileID: 0}
     - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: candyUI
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: triggerLocation
+      value: 
+      objectReference: {fileID: 1908616989}
     - target: {fileID: 6652793335821659058, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -2298,10 +2397,15 @@ PrefabInstance:
       objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6652793335821659063, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_Name
-      value: House (1)
+      value: House 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+--- !u!4 &1908616989 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6652793335143810091, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+  m_PrefabInstance: {fileID: 1908616988}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1989768122 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
@@ -2324,10 +2428,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text_CandyCounter6
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335143810088, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: m_Name
+      value: CandyTrigger 7
+      objectReference: {fileID: 0}
     - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: candyUI
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: triggerLocation
+      value: 
+      objectReference: {fileID: 1993834352}
     - target: {fileID: 6652793335821659058, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_RootOrder
       value: 10
@@ -2378,10 +2490,15 @@ PrefabInstance:
       objectReference: {fileID: 419385456094870383, guid: 0000000000000000d000000000000000, type: 0}
     - target: {fileID: 6652793335821659063, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_Name
-      value: House (6)
+      value: House 7
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+--- !u!4 &1993834352 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6652793335143810091, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+  m_PrefabInstance: {fileID: 1993834351}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2134782466
 GameObject:
   m_ObjectHideFlags: 0
@@ -2459,10 +2576,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Text_CandyCounter0
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335143810088, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: m_Name
+      value: CandyTrigger 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: candyUI
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 6652793335821659056, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+      propertyPath: triggerLocation
+      value: 
+      objectReference: {fileID: 6652793333810712686}
     - target: {fileID: 6652793335821659058, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -2513,10 +2638,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6652793335821659063, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
       propertyPath: m_Name
-      value: House
+      value: House 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+--- !u!4 &6652793333810712686 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 6652793335143810091, guid: b0697bd8648b9af468cd5620eeb27746, type: 3}
+  m_PrefabInstance: {fileID: 6652793333810712685}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8482974457840830170
 PrefabInstance:
   m_ObjectHideFlags: 0

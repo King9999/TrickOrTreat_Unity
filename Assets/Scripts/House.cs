@@ -15,6 +15,8 @@ public class House : MonoBehaviour
     public bool canHaveCandy;           //must be true in order to stock candy
     public bool candyBeingCollected;
     Costume player;                     //reference to the player collecting candy
+    //public Transform triggerLocation;   //spot where player must touch to collect candy
+    public Vector3 triggerLocation = new Vector3(0, -0.816f, 0);
 
     public Sprite houseLightsOff;
     public Sprite houseLightsOn;            //this sprite is used when a house has candy available

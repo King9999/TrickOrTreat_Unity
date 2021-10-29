@@ -90,13 +90,29 @@ public class GameManager : MonoBehaviour
             //assign the correct control setup to player 2.
             if (i == (int)PlayerManager.Player.Two)
             {
-                PlayerManager.instance.playerList[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("Player 2 Controls");
+                //PlayerManager.instance.playerList[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("Player 2 Controls");
+                PlayerManager.instance.playerList[i].GetComponent<Costume>().isAI = true;
             }
+
         }
     }
 
     void Update()
     {
+        #region AI Stuff
+        for (int i = 0; i < PlayerManager.instance.playerCount; i++)
+        {
+            Costume player = PlayerManager.instance.playerList[i].GetComponent<Costume>();
+            if (player.isAI)
+            {
+                player.SearchHouses();
+                //player.MoveToLocation(new Vector3(2, -0.5f, 0));
+            }
+        }
+
+
+        #endregion
+        #region Offscreen Check
         /*****OFFSCREEN CHECK****/
         Vector3 screenPos = Camera.main.WorldToViewportPoint(transform.position);
 
@@ -132,5 +148,6 @@ public class GameManager : MonoBehaviour
                 Debug.Log(player.name + "Hit the bottom boundary");
             }
         }
+        #endregion
     }
 }
