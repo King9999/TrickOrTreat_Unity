@@ -29,12 +29,14 @@ public class Costume : MonoBehaviour
     public float stunDuration = 1f;          //time in seconds. Player can't move during this time
     public bool isStunned = false;
     
-    [Header("AI")]
+    [Header("AI States")]
     public bool isAI;                       //if true, AI controls all other costumes not controlled by players.
     public bool locationSet;                //when true, AI's location does not change until they reach their destination or something causes the location to no longer be valid.
     public bool houseFound;                 //if true, a house with candy was found and AI is ready to move.
+    public bool collectingCandy;            //if true, AI is at a house with candy.
     //House houseWithMostCandy;
     //House houseWithShortestDistance;
+    House targetHouse;                      //the house the AI is going to/is currently taking candy from.
     public Vector3 targetLocation;                 //AI's current location if set.
 
 
@@ -154,20 +156,61 @@ public class Costume : MonoBehaviour
         if (destination.x > transform.position.x)
         {
             vx = moveSpeed;
+            //shoot a ray to the right and check for obstacles. If there is one, move AI up or down until it's clear
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(2, 0, 0), Vector3.right, 1);
+            Debug.DrawRay(transform.position, Vector3.right, Color.red);
+            if (hit.collider != null)
+            {
+                Debug.Log("hit obstacle");
+                //Debug.DrawRay(transform.position, Vector3.right, Color.red);
+            }
         }
         else if (destination.x < transform.position.x)
         {
             vx = -moveSpeed;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position - new Vector3(2, 0, 0), Vector3.left, 1);
+            Debug.DrawRay(transform.position, Vector3.left, Color.red);
+            if (hit.collider != null)
+            {
+                Debug.Log("hit obstacle");
+                //Debug.DrawRay(transform.position, Vector3.left, Color.red);
+            }
         }
 
         if (destination.y > transform.position.y)
         {
             vy = moveSpeed;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 2, 0), Vector3.up, 1);
+            Debug.DrawRay(transform.position, Vector3.up, Color.red);
+            if (hit.collider != null)
+            {
+                Debug.Log("hit obstacle");
+                //Debug.DrawRay(transform.position, Vector3.up, Color.red);
+            }
         }
 
         if (destination.y < transform.position.y)
         {
             vy = -moveSpeed;
+            RaycastHit2D hit = Physics2D.Raycast(transform.position - new Vector3(0, 2, 0), Vector3.down, 1);
+            Debug.DrawRay(transform.position, Vector3.down, Color.red);
+            if (hit.collider != null)
+            {
+                Debug.Log("hit obstacle");
+                //Debug.DrawRay(transform.position, Vector3.down, Color.red);
+            }
+        }
+
+        //check distance
+        float distance = Vector3.Distance(transform.position, destination);
+        Debug.Log("distance " + distance);
+        if (distance <= 1.005f)
+        {
+            Debug.Log("At destination");
+            transform.position = destination;
+            locationSet = false;
+            //houseFound = false;
+            collectingCandy = true;
         }
     
         /*else
@@ -212,37 +255,46 @@ public class Costume : MonoBehaviour
                     mostCandy = HouseManager.instance.houses[i].candyAmount;
                 }
 
+                //This is here to prevent AI from moving to the default house
                 houseFound = true;
             }
         }
 
-        Debug.Log("House with most candy is " + houseWithMostCandy.name);
-        Debug.Log("Closest house is " + houseWithShortestDistance.name);
 
         //roll to decide which house AI goes for
-        if (houseFound && !locationSet)
+        if (houseFound && !locationSet && !collectingCandy)
         {
+            Debug.Log("House with most candy is " + houseWithMostCandy.name);
+            Debug.Log("Closest house is " + houseWithShortestDistance.name);
+
             float randNum = Random.Range(0f, 1f);
 
             if (randNum <= 0.3f)
             {
                 //go for house with shortest distance
-                targetLocation = houseWithShortestDistance.transform.position;
+                targetLocation = houseWithShortestDistance.transform.position + houseWithShortestDistance.triggerLocation;
+                targetHouse = houseWithShortestDistance;
                 //MoveToLocation(houseWithShortestDistance.transform.position /*+ houseWithShortestDistance.triggerLocation*/);
-                Debug.Log("Closest house pos is " + targetLocation);
+                //Debug.Log(name + " moving to closest house (" + houseWithShortestDistance.name + ") at " + targetLocation);
             }
             else
             {
                 //go for house with most candy
-                targetLocation = houseWithMostCandy.transform.position;
+                targetLocation = houseWithMostCandy.transform.position + houseWithShortestDistance.triggerLocation;
+                targetHouse = houseWithMostCandy;
                 //MoveToLocation(houseWithMostCandy.transform.position /*+ houseWithMostCandy.triggerLocation*/);
-                Debug.Log("House with most candy's pos is " + targetLocation);
+                //Debug.Log(name + " moving to house with most candy (" + houseWithMostCandy.name + ") at " + targetLocation);
             }
 
+            Debug.Log(name + " moving to " + targetHouse.name + " at " + targetLocation);
             locationSet = true;
         }
     }
 
+    public bool HouseIsEmpty()
+    {
+        return targetHouse.candyAmount <= 0;
+    }
 
     #endregion
 

@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
             {
                 //PlayerManager.instance.playerList[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("Player 2 Controls");
                 PlayerManager.instance.playerList[i].GetComponent<Costume>().isAI = true;
+                PlayerManager.instance.playerList[i].GetComponent<PlayerInput>().enabled = false;
             }
 
         }
@@ -105,13 +106,25 @@ public class GameManager : MonoBehaviour
             Costume player = PlayerManager.instance.playerList[i].GetComponent<Costume>();
             if (player.isAI)
             {
-                if (player.locationSet)
+                if (player.locationSet && !player.collectingCandy)
                 {
                     player.MoveToLocation(player.targetLocation);
                 }
-                else
+                else if (!player.locationSet && !player.collectingCandy)
                 {
                     player.SearchHouses();
+                }
+                else  //stop moving, we're at a house.
+                {
+                    player.vx = 0;
+                    player.vy = 0;
+
+                    if (player.HouseIsEmpty())
+                    {
+                        //move to next house.
+                        player.collectingCandy = false;
+                        player.locationSet = false;
+                    }
                 }
                 //player.MoveToLocation(new Vector3(2, -0.5f, 0));
             }

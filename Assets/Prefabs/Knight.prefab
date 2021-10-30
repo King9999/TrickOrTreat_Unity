@@ -99,7 +99,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.002662599, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -110,7 +110,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.35, y: 0.4}
+  m_Size: {x: 0.34467483, y: 0.4}
   m_EdgeRadius: 0
 --- !u!114 &4763587870208448954
 MonoBehaviour:
@@ -143,6 +143,10 @@ MonoBehaviour:
   currentStunTime: 0
   stunDuration: 1
   isStunned: 0
+  isAI: 0
+  locationSet: 0
+  houseFound: 0
+  targetLocation: {x: 0, y: 0, z: 0}
   swordPrefab: {fileID: 8043817667779353952, guid: ce3f228978bf18c45a2095fda99e9c7c, type: 3}
 --- !u!114 &595175002959594364
 MonoBehaviour:
