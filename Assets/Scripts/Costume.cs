@@ -32,8 +32,10 @@ public class Costume : MonoBehaviour
     [Header("AI")]
     public bool isAI;                       //if true, AI controls all other costumes not controlled by players.
     public bool locationSet;                //when true, AI's location does not change until they reach their destination or something causes the location to no longer be valid.
+    public bool houseFound;                 //if true, a house with candy was found and AI is ready to move.
     //House houseWithMostCandy;
     //House houseWithShortestDistance;
+    public Vector3 targetLocation;                 //AI's current location if set.
 
 
     //player orientation. Used to determine where to generate an action
@@ -190,9 +192,9 @@ public class Costume : MonoBehaviour
 
         float shortestDistance = 0;
         float mostCandy = 0;
-        House houseWithMostCandy = HouseManager.instance.houses[6];
-        House houseWithShortestDistance = HouseManager.instance.houses[6];
-        /*for (int i = 0; i < HouseManager.instance.houses.Length; i++)
+        House houseWithMostCandy = HouseManager.instance.houses[0];
+        House houseWithShortestDistance = HouseManager.instance.houses[0];
+        for (int i = 0; i < HouseManager.instance.houses.Length; i++)
         {
             //get the distance of each house, and get the nearest house and the one with the most candy.
             if (HouseManager.instance.houses[i].HasCandy())
@@ -209,28 +211,32 @@ public class Costume : MonoBehaviour
                     houseWithMostCandy = HouseManager.instance.houses[i];
                     mostCandy = HouseManager.instance.houses[i].candyAmount;
                 }
+
+                houseFound = true;
             }
-        }*/
+        }
 
         Debug.Log("House with most candy is " + houseWithMostCandy.name);
         Debug.Log("Closest house is " + houseWithShortestDistance.name);
 
         //roll to decide which house AI goes for
-        if (!locationSet)
+        if (houseFound && !locationSet)
         {
             float randNum = Random.Range(0f, 1f);
 
             if (randNum <= 0.3f)
             {
                 //go for house with shortest distance
-                MoveToLocation(houseWithShortestDistance.transform.position /*+ houseWithShortestDistance.triggerLocation*/);
-                Debug.Log("Closest house pos is " + houseWithShortestDistance.transform.position);
+                targetLocation = houseWithShortestDistance.transform.position;
+                //MoveToLocation(houseWithShortestDistance.transform.position /*+ houseWithShortestDistance.triggerLocation*/);
+                Debug.Log("Closest house pos is " + targetLocation);
             }
             else
             {
                 //go for house with most candy
-                MoveToLocation(houseWithMostCandy.transform.position /*+ houseWithMostCandy.triggerLocation*/);
-                Debug.Log("House with most candy's pos is " + houseWithMostCandy.transform.position);
+                targetLocation = houseWithMostCandy.transform.position;
+                //MoveToLocation(houseWithMostCandy.transform.position /*+ houseWithMostCandy.triggerLocation*/);
+                Debug.Log("House with most candy's pos is " + targetLocation);
             }
 
             locationSet = true;
@@ -257,6 +263,7 @@ public class Costume : MonoBehaviour
         //update player movement
         transform.position = new Vector3(transform.position.x + (vx * Time.deltaTime),
             transform.position.y + (vy * Time.deltaTime), PlayerZValue);
+
     }
 
 

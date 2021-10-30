@@ -105,7 +105,14 @@ public class GameManager : MonoBehaviour
             Costume player = PlayerManager.instance.playerList[i].GetComponent<Costume>();
             if (player.isAI)
             {
-                player.SearchHouses();
+                if (player.locationSet)
+                {
+                    player.MoveToLocation(player.targetLocation);
+                }
+                else
+                {
+                    player.SearchHouses();
+                }
                 //player.MoveToLocation(new Vector3(2, -0.5f, 0));
             }
         }
