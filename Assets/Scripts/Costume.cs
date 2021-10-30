@@ -159,10 +159,12 @@ public class Costume : MonoBehaviour
             //shoot a ray to the right and check for obstacles. If there is one, move AI up or down until it's clear
             RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(2, 0, 0), Vector3.right, 1);
             Debug.DrawRay(transform.position, Vector3.right, Color.red);
-            if (hit.collider != null)
+            if (hit.collider != null && hit.collider.name.Contains("House"))
             {
                 Debug.Log("hit obstacle");
-                //Debug.DrawRay(transform.position, Vector3.right, Color.red);
+                StartCoroutine(ClearObstacle(hit, 0, moveSpeed));
+                //vy = moveSpeed;
+               // vx = 0;
             }
         }
         else if (destination.x < transform.position.x)
@@ -170,22 +172,30 @@ public class Costume : MonoBehaviour
             vx = -moveSpeed;
             RaycastHit2D hit = Physics2D.Raycast(transform.position - new Vector3(2, 0, 0), Vector3.left, 1);
             Debug.DrawRay(transform.position, Vector3.left, Color.red);
-            if (hit.collider != null)
+            if (hit.collider != null && hit.collider.name.Contains("House"))
             {
                 Debug.Log("hit obstacle");
-                //Debug.DrawRay(transform.position, Vector3.left, Color.red);
+                StartCoroutine(ClearObstacle(hit, 0, moveSpeed));
+                //vy = moveSpeed;
+                //vx = 0;
             }
         }
+        /*else if (Mathf.Abs(destination.x) - Mathf.Abs(transform.position.x) <= 0.1f)
+        {
+            transform.position = new Vector3(destination.x, transform.position.y, transform.position.z);
+        }*/
 
         if (destination.y > transform.position.y)
         {
             vy = moveSpeed;
             RaycastHit2D hit = Physics2D.Raycast(transform.position + new Vector3(0, 2, 0), Vector3.up, 1);
             Debug.DrawRay(transform.position, Vector3.up, Color.red);
-            if (hit.collider != null)
+            if (hit.collider != null && hit.collider.name.Contains("House"))
             {
                 Debug.Log("hit obstacle");
-                //Debug.DrawRay(transform.position, Vector3.up, Color.red);
+                StartCoroutine(ClearObstacle(hit, moveSpeed, 0));
+                //vx = moveSpeed;
+                //vy = 0;
             }
         }
 
@@ -194,16 +204,22 @@ public class Costume : MonoBehaviour
             vy = -moveSpeed;
             RaycastHit2D hit = Physics2D.Raycast(transform.position - new Vector3(0, 2, 0), Vector3.down, 1);
             Debug.DrawRay(transform.position, Vector3.down, Color.red);
-            if (hit.collider != null)
+            if (hit.collider != null && hit.collider.name.Contains("House"))
             {
                 Debug.Log("hit obstacle");
-                //Debug.DrawRay(transform.position, Vector3.down, Color.red);
+                StartCoroutine(ClearObstacle(hit, moveSpeed, 0));
+                //vx = moveSpeed;
+                //vy = 0;
             }
         }
+        /*else if (Mathf.Abs(destination.y) - Mathf.Abs(transform.position.y) <= 0.1f)
+        {
+            transform.position = new Vector3(transform.position.x, destination.y, transform.position.z);
+        }*/
 
         //check distance
         float distance = Vector3.Distance(transform.position, destination);
-        Debug.Log("distance " + distance);
+        //Debug.Log("distance " + distance);
         if (distance <= 1.005f)
         {
             Debug.Log("At destination");
@@ -220,6 +236,15 @@ public class Costume : MonoBehaviour
         }*/
     }
 
+    IEnumerator ClearObstacle(RaycastHit2D hit, float xMoveSpeedValue, float yMoveSpeedValue)
+    {
+        while (hit.collider != null)
+        {
+            vx = xMoveSpeedValue;
+            vy = yMoveSpeedValue;
+            yield return null;
+        }
+    }
     public void SeekPlayer()
     {
         //approach player if they're within the detector's range
@@ -352,11 +377,22 @@ public class Costume : MonoBehaviour
             //candy spills out in random directions.
             for (int i = 0; i < candyDropped; i++)
             {
-                float randX = Random.Range(0.1f, 1f);
-                float randY = Random.Range(0.1f, 1f);
-                float candyZValue = -2;
-                GameObject candy = Instantiate(GameManager.instance.candyPrefab, new Vector3(transform.position.x + randX, transform.position.y + randY, candyZValue), Quaternion.identity);
-                GameManager.instance.candyList.Add(candy);
+                bool candySpawned = false;
+                while (!candySpawned)
+                {
+                    float randX = Random.Range(-0.5f, 0.5f);
+                    float randY = Random.Range(-0.5f, 0.5f);
+                    float candyZValue = -2;
+
+                    Vector3 candyPos = new Vector3(transform.position.x + randX, transform.position.y + randY, candyZValue);
+                    //candy must spawn outside the target player's current postion. Otherwise, we re-roll
+                    if ((candyPos - transform.position).magnitude >= 1.1f)
+                    {
+                        GameObject candy = Instantiate(GameManager.instance.candyPrefab, candyPos, Quaternion.identity);                        
+                        GameManager.instance.candyList.Add(candy);
+                        candySpawned = true;
+                    }
+                }
             }
 
             //The player is stunned for a duration

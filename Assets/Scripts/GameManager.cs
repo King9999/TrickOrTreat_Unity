@@ -90,9 +90,9 @@ public class GameManager : MonoBehaviour
             //assign the correct control setup to player 2.
             if (i == (int)PlayerManager.Player.Two)
             {
-                //PlayerManager.instance.playerList[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("Player 2 Controls");
-                PlayerManager.instance.playerList[i].GetComponent<Costume>().isAI = true;
-                PlayerManager.instance.playerList[i].GetComponent<PlayerInput>().enabled = false;
+                PlayerManager.instance.playerList[i].GetComponent<PlayerInput>().SwitchCurrentActionMap("Player 2 Controls");
+                //PlayerManager.instance.playerList[i].GetComponent<Costume>().isAI = true;
+                //PlayerManager.instance.playerList[i].GetComponent<PlayerInput>().enabled = false;
             }
 
         }
