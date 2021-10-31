@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 //This script manages the number of players in the game, as well as which costumes they picked.
 public class PlayerManager : MonoBehaviour
@@ -14,6 +13,9 @@ public class PlayerManager : MonoBehaviour
     public GameObject knightPrefab;
     public GameObject princessPrefab;
     public GameObject witchPrefab;
+
+    //cursor
+    public GameObject[] cursors = new GameObject[2];
 
     //bools
     public bool p1Picked;
@@ -63,6 +65,15 @@ public class PlayerManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //cursor management
+        if (!onGameScreen && cursors[(int)Player.Two].transform.position == cursors[(int)Player.One].transform.position)
+        {
+            //move p2 cursor above p1's
+            Image cursorImg = cursors[(int)Player.Two].GetComponent<Image>();
+            cursors[(int)Player.Two].transform.position = new Vector3(cursors[(int)Player.Two].transform.position.x, cursors[(int)Player.Two].transform.position.y + cursorImg.sprite.rect.height + 10,
+                cursors[(int)Player.Two].transform.position.z);
+        }
+
         if (p1Picked && p2Picked)
             allPlayersSelectedCostumes = true;
 

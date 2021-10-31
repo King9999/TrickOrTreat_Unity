@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Cursor : MonoBehaviour
 {
@@ -13,6 +12,7 @@ public class Cursor : MonoBehaviour
     public bool p2Cursor;       //used to determine who is player 1 or 2
     public bool p1Picked;
     public bool p2Picked;       //once all players choose, move to game screen.
+    public TextMeshProUGUI okText;
 
     enum CostumeType
     {
@@ -37,6 +37,7 @@ public class Cursor : MonoBehaviour
         transform.position = new Vector3(costumes[(int)CostumeType.Ghost].transform.position.x + xOffset, costumes[(int)CostumeType.Ghost].transform.position.y + yOffset, transform.position.z);
         p1Picked = false;
         p2Picked = false;
+        okText.enabled = false;
     }
 
     // Update is called once per frame
@@ -52,7 +53,7 @@ public class Cursor : MonoBehaviour
 
     public void OnPressLeft(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && !okText.enabled)
         {
             if (currentCostume - 1 >= CostumeType.Ghost)
                 currentCostume--;
@@ -68,7 +69,7 @@ public class Cursor : MonoBehaviour
 
     public void OnPressRight(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && !okText.enabled)
         {
             if (currentCostume + 1 <= CostumeType.Witch)
                 currentCostume++;
@@ -84,7 +85,7 @@ public class Cursor : MonoBehaviour
 
     public void OnSelectedCostume(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && !okText.enabled)
         {
             //which player is this?
             if (p1Cursor == true)
@@ -97,6 +98,8 @@ public class Cursor : MonoBehaviour
                 PlayerManager.instance.currentPlayer = PlayerManager.Player.Two;
                 PlayerManager.instance.p2Picked = true;
             }
+
+            okText.enabled = true;
 
             //get costume object and send it to game
             switch (currentCostume)
@@ -123,8 +126,8 @@ public class Cursor : MonoBehaviour
             }
 
             //move to next screen
-            if (p1Picked == true && p2Picked == true)
-                SceneManager.LoadScene("Game");
+            //if (p1Picked == true && p2Picked == true)
+                //SceneManager.LoadScene("Game");
 
             /*if (currentMenu == START)
             {
