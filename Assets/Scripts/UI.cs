@@ -15,6 +15,12 @@ public class UI : MonoBehaviour
     public Image[] fillBars = new Image[MAX_PLAYERS];                                   //visual cooldown when trick is used
     public GameObject[] playerData = new GameObject[MAX_PLAYERS];
     public TextMeshProUGUI[] trickText = new TextMeshProUGUI[MAX_PLAYERS];              //"Trick OK" text
+    public TextMeshProUGUI countdownText;                       //appears at the start of a match
+
+    [Header("Timers")]
+    public bool gameStarted;                                    //used to prevent game from running while countdown is in effect
+    public Timer timer;
+    public Countdown countdown;
     //public GameObject[] playerHUD;
 
     //cooldown bar 
@@ -50,39 +56,48 @@ public class UI : MonoBehaviour
             }
         }
 
+        //timer.timerRunning = true;
+        countdown.SetTimer(4);          //set it to 4 due to how quickly the countdown starts. Wait time should be 3 seconds in game.
+        countdown.timerRunning = true;
     }
 
 
     void Update()
     {
+
         //Update candy scores
-        for (int i = 0; i < PlayerManager.instance.playerCount; i++)
+        if (gameStarted)
         {
-            playerCandyCounters[i].text = "x" + PlayerManager.instance.playerList[i].GetComponent<Costume>().candyAmount;
-        }
+            timer.timerRunning = true;
 
-        /*******Update cooldown timers*****/
-        for (int i = 0; i < PlayerManager.instance.playerCount; i++)
-        {
-            Costume player = PlayerManager.instance.playerList[i].GetComponent<Costume>();
-
-            //did a player use a trick recently?
-            if (player.isTrickActive)
+            for (int i = 0; i < PlayerManager.instance.playerCount; i++)
             {
-               cooldownTimers[i] = player.currentTime + player.cooldown;
+                playerCandyCounters[i].text = "x" + PlayerManager.instance.playerList[i].GetComponent<Costume>().candyAmount;
             }
 
-            if (!player.isTrickActive && player.TrickIsCharging())
+            /*******Update cooldown timers*****/
+            for (int i = 0; i < PlayerManager.instance.playerCount; i++)
             {
-                //show cooldown bar and update it. Must subtract player.currentTime (which acts as the minimum value) on both sides for accurate reading of bar.
-                fillBars[i].enabled = true;
-                trickText[i].alpha = 0.3f;
-                fillBars[i].fillAmount = (Time.time - player.currentTime) / (cooldownTimers[i] - player.currentTime);
-            }
-            else
-            {
-                fillBars[i].enabled = false;
-                trickText[i].alpha = 1;
+                Costume player = PlayerManager.instance.playerList[i].GetComponent<Costume>();
+
+                //did a player use a trick recently?
+                if (player.isTrickActive)
+                {
+                    cooldownTimers[i] = player.currentTime + player.cooldown;
+                }
+
+                if (!player.isTrickActive && player.TrickIsCharging())
+                {
+                    //show cooldown bar and update it. Must subtract player.currentTime (which acts as the minimum value) on both sides for accurate reading of bar.
+                    fillBars[i].enabled = true;
+                    trickText[i].alpha = 0.3f;
+                    fillBars[i].fillAmount = (Time.time - player.currentTime) / (cooldownTimers[i] - player.currentTime);
+                }
+                else
+                {
+                    fillBars[i].enabled = false;
+                    trickText[i].alpha = 1;
+                }
             }
         }
     }

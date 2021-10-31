@@ -46,7 +46,7 @@ public class Ghost : Costume
     //Ghost creates a "boo" attack at their current position. Ghost cannot move while this action is performed.
     public override void UseTrick(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && UI.instance.gameStarted)
         {
             if (!isTrickActive && Time.time > currentTime + cooldown)
             {

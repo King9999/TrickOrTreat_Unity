@@ -93,7 +93,7 @@ public class Costume : MonoBehaviour
     //Movement controls TODO: Is the vertical axis still bugged?
     public void MoveUp(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && UI.instance.gameStarted)
         {
             //move player up
             vy = moveSpeed;
@@ -107,7 +107,7 @@ public class Costume : MonoBehaviour
 
     public void MoveDown(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && UI.instance.gameStarted)
         {
             //move player down
             vy = -moveSpeed;
@@ -121,7 +121,7 @@ public class Costume : MonoBehaviour
 
     public void MoveLeft(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && UI.instance.gameStarted)
         {
             //move player left
             vx = -moveSpeed;
@@ -135,7 +135,7 @@ public class Costume : MonoBehaviour
 
     public void MoveRight(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && UI.instance.gameStarted)
         {
             //move player right
             vx = moveSpeed;

@@ -38,38 +38,41 @@ public class HouseManager : MonoBehaviour
     void Update()
     {
         //house update
-        for (int i = 0; i < TotalHouses; i++)
+        if (UI.instance.gameStarted)
         {
-            if (Time.time > houses[i].currentTime + houses[i].restockTime)
-                houses[i].canHaveCandy = true;
+            for (int i = 0; i < TotalHouses; i++)
+            {
+                if (Time.time > houses[i].currentTime + houses[i].restockTime)
+                    houses[i].canHaveCandy = true;
 
-            if (houses[i].canHaveCandy && !houses[i].HasCandy() && housesWithCandy < TotalHousesWithCandy)
-            {
-                //Roll to see if this house gets candy
-                float randNum = Random.Range(0f, 1f);
-                if (randNum <= StockUpChance)
+                if (houses[i].canHaveCandy && !houses[i].HasCandy() && housesWithCandy < TotalHousesWithCandy)
                 {
-                    houses[i].StockUp();
-                    housesWithCandy++;
+                    //Roll to see if this house gets candy
+                    float randNum = Random.Range(0f, 1f);
+                    if (randNum <= StockUpChance)
+                    {
+                        houses[i].StockUp();
+                        housesWithCandy++;
+                    }
                 }
-            }
-      
-            if (houses[i].HasCandy())
-            {
-                if (houses[i].candyAmountIsHidden)
-                {
-                    candyUI[i].text = "??";
-                }
-                else
-                {
-                    candyUI[i].text = houses[i].candyAmount.ToString();
-                }
-            }
-            else //no candy
-            {
-                candyUI[i].text = "";
-            }
 
+                if (houses[i].HasCandy())
+                {
+                    if (houses[i].candyAmountIsHidden)
+                    {
+                        candyUI[i].text = "??";
+                    }
+                    else
+                    {
+                        candyUI[i].text = houses[i].candyAmount.ToString();
+                    }
+                }
+                else //no candy
+                {
+                    candyUI[i].text = "";
+                }
+
+            }
         }
 
     }

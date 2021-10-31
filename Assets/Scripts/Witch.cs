@@ -70,7 +70,7 @@ public class Witch : Costume
 
     public override void UseTrick(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && UI.instance.gameStarted)
         {
             if (!isTrickActive && Time.time > currentTime + cooldown)
             {

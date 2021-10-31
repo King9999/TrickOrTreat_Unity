@@ -45,7 +45,7 @@ public class Knight : Costume
     //Perform a sword attack in the direction the knight is facing.
     public override void UseTrick(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && UI.instance.gameStarted)
         {
             if (!isTrickActive && Time.time > currentTime + cooldown)
             {

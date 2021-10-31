@@ -42,7 +42,7 @@ public class Princess : Costume
     /* The Princess doesn't have a trick, but something amusing should happen when player tries to use it */
     public override void UseTrick(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed && UI.instance.gameStarted)
         {
             if (!isTrickActive && Time.time > currentTime + cooldown)
             {

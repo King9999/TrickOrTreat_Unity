@@ -60,8 +60,30 @@
                 },
                 {
                     "name": "",
+                    "id": "f2c606ed-39eb-4ae2-a291-72bac1e7fac8",
+                    "path": "<Gamepad>/leftStick/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Up",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "f523a640-f4d7-4429-b551-05f1b5099c84",
                     "path": "<Keyboard>/s",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Down",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6d70079-c657-4e3b-93cc-d29449aa31f2",
+                    "path": "<Gamepad>/leftStick/down",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
@@ -82,6 +104,17 @@
                 },
                 {
                     "name": "",
+                    "id": "2b0dd97a-ab9d-44e9-9b5d-8914adf50bde",
+                    "path": "<Gamepad>/leftStick/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Left",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "8210d4de-1d08-4c72-8e10-f1093e8b6b66",
                     "path": "<Keyboard>/d",
                     "interactions": "",
@@ -93,8 +126,30 @@
                 },
                 {
                     "name": "",
+                    "id": "ede1bb3f-9302-4f81-b918-26c9a1f2b7f6",
+                    "path": "<Gamepad>/leftStick/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Right",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "a79d1846-669a-471a-8801-49815cd1d8ae",
                     "path": "<Keyboard>/c",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Trick",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "99cf3b78-1665-4480-a23b-d08d62287d99",
+                    "path": "<Gamepad>/buttonSouth",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
