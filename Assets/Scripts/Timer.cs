@@ -16,8 +16,8 @@ public class Timer : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        timerRunning = false;
-        time = 120;             //default time is 2 minutes.
+        //timerRunning = false;
+       // time = 120;             //default time is 2 minutes.
     }
 
     // Update is called once per frame
@@ -37,6 +37,9 @@ public class Timer : MonoBehaviour
         }
 
         //update timer display
+        if (time <= 10)
+            timerUI.color = Color.red;
+
         timerUI.text = DisplayTimer();
     }
 

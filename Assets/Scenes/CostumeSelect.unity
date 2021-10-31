@@ -974,6 +974,10 @@ MonoBehaviour:
   knightPrefab: {fileID: 6047729765440608836, guid: 4209f0e377ed3a74aa2b6c3a929776f0, type: 3}
   princessPrefab: {fileID: 4276359675420332415, guid: 3e2d57a93faeb2f4d816edb8fc350dd0, type: 3}
   witchPrefab: {fileID: 1902264819145502096, guid: 45434ff277f4e3b46a68797953e34405, type: 3}
+  p1Picked: 0
+  p2Picked: 0
+  allPlayersSelectedCostumes: 0
+  selectedCostumes: 00000000000000000000000000000000
   currentPlayer: 0
 --- !u!4 &437627913
 Transform:

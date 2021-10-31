@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     bool[] spawnPointTaken = new bool[MAX_PLAYERS];
     public List<GameObject> candyList = new List<GameObject>();     //contains dropped candy
     public GameObject candyPrefab;
+    public GameObject winScreen;
 
     public enum CostumeType
     {
@@ -39,6 +40,10 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        //win screen is disabled until time is up
+        winScreen.SetActive(false);
+        //winScreen.enabled = false;
+
         //get player info and have them start at a random spawn point
         for (int i = 0; i < PlayerManager.instance.playerCount; i++)
         {
@@ -96,78 +101,87 @@ public class GameManager : MonoBehaviour
             }
 
         }
+
     }
 
     void Update()
     {
-        #region AI Stuff
-        for (int i = 0; i < PlayerManager.instance.playerCount; i++)
+        if (!UI.instance.timer.TimeUp())
         {
-            Costume player = PlayerManager.instance.playerList[i].GetComponent<Costume>();
-            if (player.isAI)
+            #region AI Stuff
+            for (int i = 0; i < PlayerManager.instance.playerCount; i++)
             {
-                if (player.locationSet && !player.collectingCandy)
+                Costume player = PlayerManager.instance.playerList[i].GetComponent<Costume>();
+                if (player.isAI)
                 {
-                    player.MoveToLocation(player.targetLocation);
-                }
-                else if (!player.locationSet && !player.collectingCandy)
-                {
-                    player.SearchHouses();
-                }
-                else  //stop moving, we're at a house.
-                {
-                    player.vx = 0;
-                    player.vy = 0;
-
-                    if (player.HouseIsEmpty())
+                    if (player.locationSet && !player.collectingCandy)
                     {
-                        //move to next house.
-                        player.collectingCandy = false;
-                        player.locationSet = false;
+                        player.MoveToLocation(player.targetLocation);
                     }
+                    else if (!player.locationSet && !player.collectingCandy)
+                    {
+                        player.SearchHouses();
+                    }
+                    else  //stop moving, we're at a house.
+                    {
+                        player.vx = 0;
+                        player.vy = 0;
+
+                        if (player.HouseIsEmpty())
+                        {
+                            //move to next house.
+                            player.collectingCandy = false;
+                            player.locationSet = false;
+                        }
+                    }
+                    //player.MoveToLocation(new Vector3(2, -0.5f, 0));
                 }
-                //player.MoveToLocation(new Vector3(2, -0.5f, 0));
             }
+
+
+            #endregion
+            #region Offscreen Check
+            /*****OFFSCREEN CHECK****/
+            Vector3 screenPos = Camera.main.WorldToViewportPoint(transform.position);
+
+            for (int i = 0; i < PlayerManager.instance.playerCount; i++)
+            {
+                GameObject player = PlayerManager.instance.playerList[i];
+
+                //left edge
+                if (player.transform.position.x < screenPos.x * -ScreenBoundaryX)
+                {
+                    player.transform.position = new Vector3(screenPos.x * -ScreenBoundaryX, player.transform.position.y, player.transform.position.z);
+                    Debug.Log(player.name + " Hit the left boundary");
+                }
+
+                //right edge
+                if (player.transform.position.x > screenPos.x * ScreenBoundaryX)
+                {
+                    player.transform.position = new Vector3(screenPos.x * ScreenBoundaryX, player.transform.position.y, player.transform.position.z);
+                    Debug.Log(player.name + "Hit the right boundary");
+                }
+
+                //top edge. Player can't move into UI space
+                if (player.transform.position.y > screenPos.y * ScreenBoundaryY)
+                {
+                    player.transform.position = new Vector3(player.transform.position.x, screenPos.y * ScreenBoundaryY, player.transform.position.z);
+                    Debug.Log(player.name + "Hit the top boundary");
+                }
+
+                //bottom edge
+                if (player.transform.position.y < screenPos.y * -ScreenBoundaryY - yOffset)
+                {
+                    player.transform.position = new Vector3(player.transform.position.x, screenPos.y * -ScreenBoundaryY - yOffset, player.transform.position.z);
+                    Debug.Log(player.name + "Hit the bottom boundary");
+                }
+            }
+            #endregion
         }
-
-
-        #endregion
-        #region Offscreen Check
-        /*****OFFSCREEN CHECK****/
-        Vector3 screenPos = Camera.main.WorldToViewportPoint(transform.position);
-
-        for (int i = 0; i < PlayerManager.instance.playerCount; i++)
+        else
         {
-            GameObject player = PlayerManager.instance.playerList[i];
-
-            //left edge
-            if (player.transform.position.x < screenPos.x * -ScreenBoundaryX)
-            {
-                player.transform.position = new Vector3(screenPos.x * -ScreenBoundaryX, player.transform.position.y, player.transform.position.z);
-                Debug.Log(player.name + " Hit the left boundary");
-            }
-
-            //right edge
-            if (player.transform.position.x > screenPos.x * ScreenBoundaryX)
-            {
-                player.transform.position = new Vector3(screenPos.x * ScreenBoundaryX, player.transform.position.y, player.transform.position.z);
-                Debug.Log(player.name + "Hit the right boundary");
-            }
-
-            //top edge. Player can't move into UI space
-            if (player.transform.position.y > screenPos.y * ScreenBoundaryY)
-            {
-                player.transform.position = new Vector3(player.transform.position.x, screenPos.y * ScreenBoundaryY, player.transform.position.z);
-                Debug.Log(player.name + "Hit the top boundary");
-            }
-
-            //bottom edge
-            if (player.transform.position.y < screenPos.y * -ScreenBoundaryY - yOffset)
-            {
-                player.transform.position = new Vector3(player.transform.position.x, screenPos.y * -ScreenBoundaryY - yOffset, player.transform.position.z);
-                Debug.Log(player.name + "Hit the bottom boundary");
-            }
+            //game is over, check results and display the winner.
+            winScreen.SetActive(true);
         }
-        #endregion
     }
 }
