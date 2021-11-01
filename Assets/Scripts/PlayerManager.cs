@@ -21,7 +21,11 @@ public class PlayerManager : MonoBehaviour
     public bool p1Picked;
     public bool p2Picked;
     public bool allPlayersSelectedCostumes;            //used to move to game screen when true.
-    bool onGameScreen;
+    public bool ghostPicked;
+    public bool knightPicked;
+    public bool princessPicked;
+    public bool witchPicked;
+    [HideInInspector]public bool onGameScreen;
 
     //consts
     const int MAX_PLAYERS = 4;

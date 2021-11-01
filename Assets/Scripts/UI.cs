@@ -59,7 +59,7 @@ public class UI : MonoBehaviour
         //timer.timerRunning = true;
         countdown.SetTimer(4);          //set it to 4 due to how quickly the countdown starts. Wait time should be 3 seconds in game.
         countdown.timerRunning = true;
-        timer.SetTimer(1);            //2 minutes
+        timer.SetTimer(120);            //2 minutes
         timer.timerRunning = false;
     }
 

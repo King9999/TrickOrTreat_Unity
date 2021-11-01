@@ -91,22 +91,115 @@ public class Cursor : MonoBehaviour
             if (p1Cursor == true)
             {
                 PlayerManager.instance.currentPlayer = PlayerManager.Player.One;
-                PlayerManager.instance.p1Picked = true;
+                //get costume object and send it to game
+                switch (currentCostume)
+                {
+                    case CostumeType.Ghost:
+                        if (!PlayerManager.instance.ghostPicked)
+                        {
+                            PlayerManager.instance.selectedCostumes[(int)PlayerManager.instance.currentPlayer] = PlayerManager.CostumeType.Ghost;
+                            PlayerManager.instance.ghostPicked = true;
+                            PlayerManager.instance.p1Picked = true;
+                            okText.enabled = true;
+                        }
+                        break;
+
+                    case CostumeType.Knight:
+                        if (!PlayerManager.instance.knightPicked)
+                        {
+                            PlayerManager.instance.selectedCostumes[(int)PlayerManager.instance.currentPlayer] = PlayerManager.CostumeType.Knight;
+                            PlayerManager.instance.knightPicked = true;
+                            PlayerManager.instance.p1Picked = true;
+                            okText.enabled = true;
+                        }
+                        break;
+
+                    case CostumeType.Princess:
+                        if (!PlayerManager.instance.princessPicked)
+                        {
+                            PlayerManager.instance.selectedCostumes[(int)PlayerManager.instance.currentPlayer] = PlayerManager.CostumeType.Princess;
+                            PlayerManager.instance.princessPicked = true;
+                            PlayerManager.instance.p1Picked = true;
+                            okText.enabled = true;
+                        }
+                        break;
+
+                    case CostumeType.Witch:
+                        if (!PlayerManager.instance.witchPicked)
+                        {
+                            PlayerManager.instance.selectedCostumes[(int)PlayerManager.instance.currentPlayer] = PlayerManager.CostumeType.Witch;
+                            PlayerManager.instance.witchPicked = true;
+                            PlayerManager.instance.p1Picked = true;
+                            okText.enabled = true;
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
             }
             else if (p2Cursor == true)
             {
                 PlayerManager.instance.currentPlayer = PlayerManager.Player.Two;
-                PlayerManager.instance.p2Picked = true;
+                //get costume object and send it to game
+                switch (currentCostume)
+                {
+                    case CostumeType.Ghost:
+                        if (!PlayerManager.instance.ghostPicked)
+                        {
+                            PlayerManager.instance.selectedCostumes[(int)PlayerManager.instance.currentPlayer] = PlayerManager.CostumeType.Ghost;
+                            PlayerManager.instance.ghostPicked = true;
+                            PlayerManager.instance.p2Picked = true;
+                            okText.enabled = true;
+                        }
+                        break;
+
+                    case CostumeType.Knight:
+                        if (!PlayerManager.instance.knightPicked)
+                        {
+                            PlayerManager.instance.selectedCostumes[(int)PlayerManager.instance.currentPlayer] = PlayerManager.CostumeType.Knight;
+                            PlayerManager.instance.knightPicked = true;
+                            PlayerManager.instance.p2Picked = true;
+                            okText.enabled = true;
+                        }
+                        break;
+
+                    case CostumeType.Princess:
+                        if (!PlayerManager.instance.princessPicked)
+                        {
+                            PlayerManager.instance.selectedCostumes[(int)PlayerManager.instance.currentPlayer] = PlayerManager.CostumeType.Princess;
+                            PlayerManager.instance.princessPicked = true;
+                            PlayerManager.instance.p2Picked = true;
+                            okText.enabled = true;
+                        }
+                        break;
+
+                    case CostumeType.Witch:
+                        if (!PlayerManager.instance.witchPicked)
+                        {
+                            PlayerManager.instance.selectedCostumes[(int)PlayerManager.instance.currentPlayer] = PlayerManager.CostumeType.Witch;
+                            PlayerManager.instance.witchPicked = true;
+                            PlayerManager.instance.p2Picked = true;
+                            okText.enabled = true;
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
             }
 
-            okText.enabled = true;
+            //okText.enabled = true;
 
             //get costume object and send it to game
-            switch (currentCostume)
+           /* switch (currentCostume)
             {
                 case CostumeType.Ghost:
-                    //PlayerManager.instance.playerList[(int)PlayerManager.instance.currentPlayer] = Instantiate(PlayerManager.instance.ghostPrefab);
-                    PlayerManager.instance.selectedCostumes[(int)PlayerManager.instance.currentPlayer] = PlayerManager.CostumeType.Ghost;
+                    if (!PlayerManager.instance.ghostPicked)
+                    {
+                        PlayerManager.instance.selectedCostumes[(int)PlayerManager.instance.currentPlayer] = PlayerManager.CostumeType.Ghost;
+                        PlayerManager.instance.ghostPicked = true;
+                    }
                     break;
 
                 case CostumeType.Knight:
@@ -123,7 +216,7 @@ public class Cursor : MonoBehaviour
 
                 default:
                     break;
-            }
+            }*/
 
             //move to next screen
             //if (p1Picked == true && p2Picked == true)
